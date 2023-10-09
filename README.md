@@ -77,7 +77,7 @@ GET    | /vet            | YES   | personnel | Get All Vets       |  `query para
 GET    | /vet            | YES   | admin | Get All Vets       |  `query params`                                 | [{vet}]
 GET    | /vet/:vetId      | YES   | user | Get One Vet       |                               | [{vet}]
 GET    | /vet/:vetId      | YES   | admin | Get One Vet        |                               | [{vet}]
-GET    | /vet/:vetId      | YES   | personnel | One Vet        |                               | [{vet}]
+GET    | /vet/:vetId      | YES   | personnel | Get One Vet        |                               | [{vet}]
 POST   | /vet            | YES   | admin |  Create one Vet        | `membership_num`,`first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {vet}
 PUT   |  /vet/:vetId     | YES   | admin |  Update one Vet        | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'Vet updated'}
 PUT    | /vet/password   | YES   | personnel  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
