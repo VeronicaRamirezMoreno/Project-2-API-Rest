@@ -4,8 +4,8 @@ VETERINARY CLINIC MANAGEMENT SYSTEM
 ### Our team:
 Guaci, Marcos and Vero.
 
-### Our project:
 
+### Our project:
 This project consists of creating an API that facilitates the management of medical appointments for a veterinary clinic. The clinic will control the registration of owners and pets, appointments, treatment follow-up and the assignment of veterinarians. Owners will be able to request appointments for their pets, as well as consult their record at any time and the information of the veterinarians and treatments available at the clinic.
 
 Roles: There will be 3 main roles:
@@ -13,8 +13,14 @@ Roles: There will be 3 main roles:
 - Personnel (clinic staff): This role can see all the information. Create, update and delete pets, owners, contact details, appointments. You can view vet and treatment information, but you can NOT create, update, or delete it.
 - User (pet owner): This role can view all vet and treatment information. But you can only see your own appointments, pets and contact information (not other users). Likewise, you can only create, update and delete your own data. You have access to the information of all available appointments and the possibility to update the "status" field of the appointments when you select one to book for your pet, so that its status changes to "not available".
 
+
+### Tables:
+![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/5c5876e0-c891-45db-8845-0c6df42f386f)
+
+
 ### Authentication Endpoints
 The Authentication flow for the application is:
+![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/d9dbe992-f67e-4ec9-9883-36757707d880)
 
 
 ### User Signup/Login
