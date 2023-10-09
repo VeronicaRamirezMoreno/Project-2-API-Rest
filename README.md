@@ -90,13 +90,29 @@ POST   | /pet/profile   | YES   | user |  Create own Pet        | `name`, `birth
 POST   | /pet            | YES   | admin |  Create one Pet        | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
 POST   | /pet            | YES   | personnel |  Create one Pet   | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
 PUT  | /pet/profile  | YES   | user |  Update own Pet | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`| {message: 'Pet updated'}
-PUT    | /pet/:petId     | YES   | admin |  Update one Pet     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'Pet updated'}
-PUT    | /pet/:petId     | YES   | personnel |  Update one Pet     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'Pet updated'}
+PUT    | /pet/:petId     | YES   | admin |  Update one Pet     | ``name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`  | {message: 'Pet updated'}
+PUT    | /pet/:petId     | YES   | personnel |  Update one Pet     | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`| {message: 'Pet updated'}
 DELETE | /pet/profile    | YES   | user | Delete own Pet       |                                                    | { message: 'Pet deleted' }
 DELETE | /pet/:petId     | YES   | admin | Delete one Pet         |                                                   | {message: 'Pet deleted'}
 DELETE | /pet/:petId    | YES   | personnel | Delete one Pet      |                                                   | {message: 'Pet deleted'}
 
 
+### Appointments Endpoints 
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /appointment            | YES   | personnel |Get All Appointments     |  `query params`                                 | [{appointment}]
+GET    | /appointment            | YES   | admin | Get All Appointments       |  `query params`                                 | [{appointment}]
+GET    | /appointment/profile    | YES   | user | Get own Appointments        |                                                 |  {appointment}
+GET    | /appointment/available    | YES   | user | Get available Appointments   |                                                |  {appointment}
+POST   | /appointment   | YES   | admin |  Create one Appointment       | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {appointment}
+POST   | /appointment   | YES   | personnel |  Create one Appointment | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {appointment}
+PUT    | /appointment/available  | YES   | user |  Update own Appointment |   `status`   | {message: 'Appointment updated'}
+PUT    | /appointment/:appointmentId     | YES   | admin |  Update one Pet     | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {message: 'Appointment updated'}
+PUT    | /appointment/:appointmentId     | YES   | personnel |  Update one Pet     | `appointment_date`, `appointment_time`, `description`, `duration`, `status`| {message: 'Appointment updated'}
+DELETE | /appointment/profile    | YES   | user | Delete own Appointment       |                                               | { message: 'Appointment deleted' }
+DELETE | /appointment/:appointmentId     | YES   | admin | Delete one Appointment         |                                            | {message: 'Appointment deleted'}
+DELETE | /appointment/:appointmentId    | YES   | personnel | Delete one Appointment      |                                            | {message: 'Appointment deleted'}
 
 
 
