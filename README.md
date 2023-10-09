@@ -71,11 +71,11 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /vet            | YES   | user | Get All Vets       |  `query params`                                 | [{vet}]
 GET    | /vet            | YES   | personnel | Get All Vets       |  `query params`                                 | [{vet}]
 GET    | /vet            | YES   | admin | Get All Vets       |  `query params`                                 | [{vet}]
-GET    | /vet/:vetId      | YES   | user | Get All Vets       |                               | [{vet}]
-GET    | /vet/:vetId      | YES   | admin | Get All Vets       |                               | [{vet}]
-GET    | /vet/:vetId      | YES   | personnel | Get All Vets       |                               | [{vet}]
-POST   | /vet            | YES   | admin |  Create one Vet        | `membership_num`, `first_name', `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {vet}
-PUT   |  /vet/:vetId     | YES   | admin |  Update one Vet        | `membership_num`, `first_name', `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'Vet updated'}
+GET    | /vet/:vetId      | YES   | user | Get One Vet       |                               | [{vet}]
+GET    | /vet/:vetId      | YES   | admin | Get One Vet        |                               | [{vet}]
+GET    | /vet/:vetId      | YES   | personnel | One Vet        |                               | [{vet}]
+POST   | /vet            | YES   | admin |  Create one Vet        | `membership_num`,`first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {vet}
+PUT   |  /vet/:vetId     | YES   | admin |  Update one Vet        | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'Vet updated'}
 PUT    | /vet/password   | YES   | personnel  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
 DELETE | /vet/:vetId    | YES   | admin | Delete one user         |                                                   | {message: 'Vet deleted'}
 
@@ -90,7 +90,7 @@ POST   | /pet/profile   | YES   | user |  Create own Pet        | `name`, `birth
 POST   | /pet            | YES   | admin |  Create one Pet        | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
 POST   | /pet            | YES   | personnel |  Create one Pet   | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
 PUT  | /pet/profile  | YES   | user |  Update own Pet | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`| {message: 'Pet updated'}
-PUT    | /pet/:petId     | YES   | admin |  Update one Pet     | ``name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`  | {message: 'Pet updated'}
+PUT    | /pet/:petId     | YES   | admin |  Update one Pet     | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`  | {message: 'Pet updated'}
 PUT    | /pet/:petId     | YES   | personnel |  Update one Pet     | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`| {message: 'Pet updated'}
 DELETE | /pet/profile    | YES   | user | Delete own Pet       |                                                    | { message: 'Pet deleted' }
 DELETE | /pet/:petId     | YES   | admin | Delete one Pet         |                                                   | {message: 'Pet deleted'}
@@ -115,4 +115,16 @@ DELETE | /appointment/:appointmentId     | YES   | admin | Delete one Appointmen
 DELETE | /appointment/:appointmentId    | YES   | personnel | Delete one Appointment      |                                            | {message: 'Appointment deleted'}
 
 
+### Treatments Endpoints
 
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /treatment            | YES   | user | Get All Treatments       |  `query params`                                 | [{treatment}]
+GET    | /treatment            | YES   | personnel | Get All Treatments       |  `query params`                                 | [{treatment}]
+GET    | /treatment            | YES   | admin | Get All Treatments       |  `query params`                                 | [{treatment}]
+GET    | /treatment/:treatmentId      | YES   | user | Get One Treatment       |                               | [{treatment}]
+GET    | /treatment/:treatmentId      | YES   | admin | Get One Treatment       |                               | [{treatment}]
+GET    | /treatment/:treatmentId      | YES   | personnel | Get One Treatment      |                               | [{treatment}]
+POST   | /treatment            | YES   | admin |  Create one Treatment        | `name`,`description`, `price` | {treatment}
+PUT   |  /treatment/:treatmentId     | YES   | admin |  Update one Treatment        | `name`,`description`, `price` | {message: 'Treatment updated'}
+DELETE | /treatment/:treatmentId     | YES   | admin | Delete one Treatment         |                                                   | {message: 'Treatment deleted'}
