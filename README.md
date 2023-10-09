@@ -24,6 +24,7 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 POST   | /auth/signup     | -     | user | User Signup              | `first_name`, `last_name`, `email`, `password`, `DNI`  | { token: `token` }
 POST   | /auth/login      | -     | user | User Login               | `email`, `password`                             | { token: `token` }
 
+
 ### User Endpoints 
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
@@ -40,6 +41,7 @@ PUT    | /user/password   | YES   | user  | Reset password          | `newPasswo
 DELETE | /user/profile    | YES   | user | Delete own profile       |                                                    | { message: 'Profile deleted' }
 DELETE | /user/:userId    | YES   | admin | Delete one user         |                                                   | {message: 'User deleted'}
 DELETE | /user/:userId    | YES   | personnel | Delete one user      |                                                   | {message: 'User deleted'}
+
 
 ### User Contact_info Endpoints 
 
@@ -58,11 +60,13 @@ DELETE | /contact_info /profile    | YES   | user | Delete own contact_info     
 DELETE | /contact_info /:contact_infoId      | YES   | admin | Delete one contact_info         |                                  | {message: 'Contact information deleted'}
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
+
 ### Personnel Login
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------|-------------------------------------------------|--------------------
 POST   | /auth/login      | -     | personnel | Vet Login               | `email`, `password`                             | { token: `token` }
+
 
 ### Personnel Endpoints
 
@@ -78,6 +82,7 @@ POST   | /vet            | YES   | admin |  Create one Vet        | `membership_
 PUT   |  /vet/:vetId     | YES   | admin |  Update one Vet        | `membership_num`, `first_name`, `last_name`, `email`, `password`, `phone`, `specializaition`, `profile_picture`  | {message: 'Vet updated'}
 PUT    | /vet/password   | YES   | personnel  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
 DELETE | /vet/:vetId    | YES   | admin | Delete one user         |                                                   | {message: 'Vet deleted'}
+
 
 ### Pet Endpoints 
 
