@@ -79,6 +79,23 @@ PUT   |  /vet/:vetId     | YES   | admin |  Update one Vet        | `membership_
 PUT    | /vet/password   | YES   | personnel  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
 DELETE | /vet/:vetId    | YES   | admin | Delete one user         |                                                   | {message: 'Vet deleted'}
 
+### Pet Endpoints 
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
+GET    | /pet            | YES   | personnel | Get All Pets       |  `query params`                                 | [{pet}]
+GET    | /pet            | YES   | admin | Get All Pets           |  `query params`                                 | [{pet}]
+GET    | /pet/profile    | YES   | user | Get own Pet          |                                                 |  {pet}
+POST   | /pet/profile   | YES   | user |  Create own Pet        | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
+POST   | /pet            | YES   | admin |  Create one Pet        | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
+POST   | /pet            | YES   | personnel |  Create one Pet   | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
+PUT  | /pet/profile  | YES   | user |  Update own Pet | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments`| {message: 'Pet updated'}
+PUT    | /pet/:petId     | YES   | admin |  Update one Pet     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'Pet updated'}
+PUT    | /pet/:petId     | YES   | personnel |  Update one Pet     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'Pet updated'}
+DELETE | /pet/profile    | YES   | user | Delete own Pet       |                                                    | { message: 'Pet deleted' }
+DELETE | /pet/:petId     | YES   | admin | Delete one Pet         |                                                   | {message: 'Pet deleted'}
+DELETE | /pet/:petId    | YES   | personnel | Delete one Pet      |                                                   | {message: 'Pet deleted'}
+
 
 
 
