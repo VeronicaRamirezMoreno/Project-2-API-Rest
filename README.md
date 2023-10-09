@@ -36,9 +36,7 @@ POST   | /auth/login      | -     | user | User Login               | `email`, `
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /user            | YES   | personnel | Get All Users       |  `query params`                                 | [{user}]
-GET    | /user            | YES   | admin | Get All Users           |  `query params`                                 | [{user}]
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                 |  {user}
-POST   | /user            | YES   | admin |  Create one user        | `first_name`, `last_name`, `email`, `password`, `DNI`  | {user}
 POST   | /user            | YES   | personnel |  Create one user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {user}
 PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
 PUT    | /user/:userId    | YES   | admin |  Update one user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
