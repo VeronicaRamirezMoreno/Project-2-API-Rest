@@ -113,8 +113,8 @@ GET    | /appointment/available    | YES   | user | Get available Appointments  
 POST   | /appointment   | YES   | admin |  Create one Appointment       | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {appointment}
 POST   | /appointment   | YES   | personnel |  Create one Appointment | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {appointment}
 PUT    | /appointment/available  | YES   | user |  Update own Appointment |   `status`   | {message: 'Appointment updated'}
-PUT    | /appointment/:appointmentId     | YES   | admin |  Update one Pet     | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {message: 'Appointment updated'}
-PUT    | /appointment/:appointmentId     | YES   | personnel |  Update one Pet     | `appointment_date`, `appointment_time`, `description`, `duration`, `status`| {message: 'Appointment updated'}
+PUT    | /appointment/:appointmentId     | YES   | admin |  Update one Appointment     | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {message: 'Appointment updated'}
+PUT    | /appointment/:appointmentId     | YES   | personnel |  Update one Appointment     | `appointment_date`, `appointment_time`, `description`, `duration`, `status`| {message: 'Appointment updated'}
 DELETE | /appointment/profile    | YES   | user | Delete own Appointment       |                                               | { message: 'Appointment deleted' }
 DELETE | /appointment/:appointmentId     | YES   | admin | Delete one Appointment         |                                            | {message: 'Appointment deleted'}
 DELETE | /appointment/:appointmentId    | YES   | personnel | Delete one Appointment      |                                            | {message: 'Appointment deleted'}
