@@ -1,6 +1,6 @@
 # Project-2-API-Rest
 VETERINARY CLINIC MANAGEMENT SYSTEM
-```
+
 ### Authentication Endpoints
 The Authentication flow for the application is:
 
@@ -34,4 +34,3 @@ GET    | /post/profile    | YES   | user | Get Own Posts          |             
 GET    | /post/:postId       | YES   | user | Get One Post           |                                            | {post}
 GET    | /post/:userId/all    | YES   | user | Get One User's posts   |                                            | [{post}]
 PUT    | /post/:postId/like   | YES   | user | Like one post          |                                            | {post}
-```
