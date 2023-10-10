@@ -65,7 +65,7 @@ DELETE | /user/profile    | YES   | user | Delete own profile       |           
 DELETE | /user/:ownerId    | YES   | personnel | Delete one Owner      |                                                   | {message: 'User deleted'}
 
 
-### User Contact_info Endpoints 
+### Owner Contact_info Endpoints 
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
@@ -80,7 +80,7 @@ DELETE | /contact_info /profile    | YES   | user | Delete own contact_info     
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
 
-### Personnel Endpoints
+### Vets_info Endpoints
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
