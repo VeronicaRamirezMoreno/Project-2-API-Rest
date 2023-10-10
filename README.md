@@ -52,6 +52,7 @@ POST   | /auth/login      | -     | user | User Login               | `email`, `
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /user            | YES   | personnel | Get All Users       |  `query params`                                 | [{user}]
+GET    | /user/:userId    | YES   | personnel | Get One Users       |                                 | [{user}]
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                 |  {user}
 POST   | /user            | YES   | personnel |  Create one user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {user}
 PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
@@ -66,6 +67,7 @@ DELETE | /user/:userId    | YES   | personnel | Delete one user      |          
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /contact_info    | YES   | personnel | Get All Contact_info       |  `query params`                                 | [{contact_info}]
+GET    | /contact_info/:contact_infoID    | YES   | personnel | Get One Contact_info |                        | [{contact_info}]
 GET    | /contact_info/profile    | YES   | user | Get Own Profile          |                                                 |  {contact_info}
 POST   | /contact_info/profile    | YES   | user |  Create Own Contact_indo  | `phone`, `address`              |{contact_info}
 POST   | /contact_info             | YES   | personnel | Create one Contact_info    | `phone`, `address`       | {contact_info}
@@ -74,7 +76,7 @@ PUT    | /contact_info /:contact_infoId    | YES   | personnel |  Update one con
 DELETE | /contact_info /profile    | YES   | user | Delete own contact_info       |                                               | { message: 'Contact information deleted' }
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
-### Personnel Signup/Login
+### Personnel Login
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------|-------------------------------------------------|--------------------
@@ -97,6 +99,7 @@ DELETE | /vet/:vetId    | YES   | admin | Delete one user         |             
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /pet            | YES   | personnel | Get All Pets       |  `query params`                                 | [{pet}]
+GET    | /pet/:petId     | YES   | personnel | Get One Pets       |                                | [{pet}]
 GET    | /pet/profile    | YES   | user | Get own Pet          |                                                 |  {pet}
 POST   | /pet/profile   | YES   | user |  Create own Pet        | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
 POST   | /pet            | YES   | personnel |  Create one Pet   | `name`, `birth_date`, `chip_num`, `species`, `breed`, `sex`, `profile_picture`, `comments` | {pet}
@@ -111,6 +114,7 @@ DELETE | /pet/:petId    | YES   | personnel | Delete one Pet      |             
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
 GET    | /appointment            | YES   | personnel |Get All Appointments     |  `query params`                                 | [{appointment}]
+GET    | /appointment/:appointmentId    | YES   | personnel |Get One Appointments     |                                   | [{appointment}]
 GET    | /appointment/profile    | YES   | user | Get own Appointments        |                                                 |  {appointment}
 GET    | /appointment/available    | YES   | user | Get available Appointments   |                                                |  {appointment}
 POST   | /appointment   | YES   | personnel |  Create one Appointment | `appointment_date`, `appointment_time`, `description`, `duration`, `status` | {appointment}
