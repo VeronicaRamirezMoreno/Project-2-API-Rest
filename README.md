@@ -16,7 +16,7 @@ Roles: There will be 3 main roles:
 - User (pet owner): This role can view all vet and treatment information. But you can only see your own appointments, pets and contact information (not other users). Likewise, you can only create, update and delete your own data. You have access to the information of all available appointments and the possibility to update the "status" field of the appointments when you select one to book for your pet, so that its status changes to "not available".
 
 ### Tables:
-![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/45b8d7d4-c31e-4b29-9d1a-4976cfb6d026)
+![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/f0c5efa7-10fc-47e9-8a0a-b48a48315d16)
 
 
 ### Relationships between tables:
