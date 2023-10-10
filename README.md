@@ -1,9 +1,10 @@
 # Project-2-API-Rest
 VETERINARY CLINIC MANAGEMENT SYSTEM
 
+## Summary
+
 ### Team:
 Guaci, Marcos and Vero.
-
 
 ### Project Idea:
 This project consists of creating an API that facilitates the management of medical appointments for a veterinary clinic. The clinic will control the registration of owners and pets, appointments, treatment follow-up and the assignment of veterinarians. Owners will be able to request appointments for their pets, as well as consult their record at any time and the information of the veterinarians and treatments available at the clinic.
@@ -19,17 +20,17 @@ Roles: There will be 3 main roles:
 
 ### Relationships between tables:
 
-- One to one:
-Ref: Owners.id_Owner - Contact_information.id_ContactInfo
+#### One to one:
+- Ref: Owners.id_Owner - Contact_information.id_ContactInfo
 
-- One to many:
-Ref: Pets.id_Pet > Owners.id_Owner
-Ref: Appointments.id_Appointment > Pets.id_Pet
-Ref: Appointments.id_Appointment  >  Vets.id_Vet
+#### One to many:
+- Ref: Pets.id_Pet > Owners.id_Owner
+- Ref: Appointments.id_Appointment > Pets.id_Pet
+- Ref: Appointments.id_Appointment  >  Vets.id_Vet
 
-- Many to many:
-Ref: Appointments.id_Appointment > Appointments_Treatments.id_Appointment
-Ref: Treatments.id_Treatment > Appointments_Treatments.id_Treatment
+#### Many to many:
+- Ref: Appointments.id_Appointment > Appointments_Treatments.id_Appointment
+- Ref: Treatments.id_Treatment > Appointments_Treatments.id_Treatment
 
 
 ### Authentication Endpoints
@@ -37,6 +38,7 @@ The Authentication flow for the application is:
 ![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/d9dbe992-f67e-4ec9-9883-36757707d880)
 
 
+## Endpoints
 ### User Signup/Login
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
