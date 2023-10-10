@@ -36,7 +36,7 @@ Roles: There will be 3 main roles:
 
 ### Authentication Endpoints
 The Authentication flow for the application is:
-![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/d9dbe992-f67e-4ec9-9883-36757707d880)
+![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/c4cb04e0-a87f-4aaf-b399-c74427c46ed8)
 
 
 ## Endpoints
@@ -52,13 +52,14 @@ POST   | /auth/login      | -     | user | User Login               | `email`, `
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /personnel/user            | YES   | personnel | Get All Users       |  `query params`                                 | [{user}]
-GET    | /admin/user            | YES   | admin | Get All Users       |  `query params`                                 | [{user}]
-GET    | /user/:userId    | YES   | personnel | Get One Users       |                                 | {user}
+GET    | /user/owner    | YES   | personnel | Get All Owners       |  `query params`                                 | [{user}]
+GET    | /user          | YES   | admin | Get All Users       |  `query params`                                 | [{user}]
+GET    | /user/:userId    | YES   | personnel | Get One User       |                                 | {user}
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                 |  {user}
-POST   | /user            | YES   | personnel |  Create one user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {user}
-PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
-PUT    | /user/:userId    | YES   | personnel |  Update one user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
+POST   | /user/owner     | YES   | personnel |  Create one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
+POST   | /user     | YES   | personnel |  Create one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
+PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
+PUT    | /user/:userId    | YES   | personnel |  Update one user     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
 PUT    | /user/password   | YES   | user  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
 DELETE | /user/profile    | YES   | user | Delete own profile       |                                                    | { message: 'Profile deleted' }
 DELETE | /user/:userId    | YES   | personnel | Delete one user      |                                                   | {message: 'User deleted'}
@@ -78,11 +79,6 @@ PUT    | /contact_info /:contact_infoId    | YES   | personnel |  Update one con
 DELETE | /contact_info /profile    | YES   | user | Delete own contact_info       |                                               | { message: 'Contact information deleted' }
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
-### Personnel Login
-
-METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
--------|------------------|-------|------|--------------------|-------------------------------------------------|--------------------
-POST   | /auth/login      | -     | personnel | User Login               | `email`, `password`                             | { token: `token` }
 
 ### Personnel Endpoints
 
