@@ -16,18 +16,19 @@ Roles: There will be 3 main roles:
 - User (pet owner): This role can view all vet and treatment information. But you can only see your own appointments, pets and contact information (not other users). Likewise, you can only create, update and delete your own data. You have access to the information of all available appointments and the possibility to update the "status" field of the appointments when you select one to book for your pet, so that its status changes to "not available".
 
 ### Tables:
-![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/7a72f051-7e2a-4788-92b4-6534fb84b5a8)
+![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/45b8d7d4-c31e-4b29-9d1a-4976cfb6d026)
 
 
 ### Relationships between tables:
 
 #### One to one:
-- Ref: Owners.id_Owner - Contact_information.id_ContactInfo -- One contact info belongs to only one owner.
+- Ref: Users.id_User - Contact_information.id_ContactInfo
+- Ref: Users.id_User - Vets_information.id_Vet 
 
 #### One to many:
-- Ref: Pets.id_Pet > Owners.id_Owner -- One owner may have many pets
-- Ref: Appointments.id_Appointment > Pets.id_Pet -- One vet can have many appointments
-- Ref: Appointments.id_Appointment  >  Vets.id_Vet -- One pet can have many appointments
+- Ref: Pets.id_Pet > Users.id_User
+- Ref: Appointments.id_Appointment > Pets.id_Pet
+- Ref: Appointments.id_Appointment  > Users.id_User
 
 #### Many to many:
 - Ref: Appointments <> Treatments -- A treatment can have several appointments, and several treatments can be given at the same appointment.
