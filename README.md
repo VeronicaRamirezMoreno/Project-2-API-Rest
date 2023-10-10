@@ -52,17 +52,17 @@ POST   | /auth/login      | -     | user | User Login               | `email`, `
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
 -------|------------------|-------|------|--------------------------|-------------------------------------------------|--------------------
-GET    | /user/owner    | YES   | personnel | Get All Owners       |  `query params`                                 | [{user}]
 GET    | /user          | YES   | admin | Get All Users       |  `query params`                                 | [{user}]
-GET    | /user/:userId    | YES   | personnel | Get One User       |                                 | {user}
+GET    | /user/:userId    | YES   | admin | Get One User       |                                 | {user}
+GET    | /user/owner    | YES   | personnel | Get All Owners       |  `query params`                                 | [{user}]
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                 |  {user}
 POST   | /user/owner     | YES   | personnel |  Create one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
-POST   | /user     | YES   | personnel |  Create one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
+POST   | /user     | YES   | admin |  Create one User     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
 PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
-PUT    | /user/:userId    | YES   | personnel |  Update one user     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
+PUT    | /user/:ownerId    | YES   | personnel |  Update one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
 PUT    | /user/password   | YES   | user  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
 DELETE | /user/profile    | YES   | user | Delete own profile       |                                                    | { message: 'Profile deleted' }
-DELETE | /user/:userId    | YES   | personnel | Delete one user      |                                                   | {message: 'User deleted'}
+DELETE | /user/:ownerId    | YES   | personnel | Delete one Owner      |                                                   | {message: 'User deleted'}
 
 
 ### User Contact_info Endpoints 
