@@ -74,6 +74,12 @@ PUT    | /contact_info /:contact_infoId    | YES   | personnel |  Update one con
 DELETE | /contact_info /profile    | YES   | user | Delete own contact_info       |                                               | { message: 'Contact information deleted' }
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
+### Personnel Signup/Login
+
+METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
+-------|------------------|-------|------|--------------------|-------------------------------------------------|--------------------
+POST   | /auth/login      | -     | personnel | User Login               | `email`, `password`                             | { token: `token` }
+
 ### Personnel Endpoints
 
 METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAMS                                     | RETURNS
