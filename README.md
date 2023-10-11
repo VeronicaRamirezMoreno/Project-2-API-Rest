@@ -72,14 +72,14 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /contact_info    | YES   | personnel | Get All Contact_info       |  `query params`                                 | [{contact_info}]
 GET    | /contact_info/:contact_infoID    | YES   | personnel | Get One Contact_info |                        | {contact_info}
 GET    | /contact_info/profile    | YES   | user | Get Own Profile          |                                                 |  {contact_info}
-POST   | /contact_info/profile    | YES   | user |  Create Own Contact_indo  | `phone`, `address`              |{contact_info}
+POST   | /contact_info/profile *  | YES   | user |  Create Own Contact_indo  | `phone`, `address`              |{contact_info}
 POST   | /contact_info             | YES   | personnel | Create one Contact_info    | `phone`, `address`       | {contact_info}
 PUT    | /contact_info /profile   | YES   | user |  Update own contact_info      | `phone`, `address`   | {message: 'Contact information updated'}
 PUT    | /contact_info /:contact_infoId    | YES   | personnel |  Update one contact_info      | `phone`, `address`    | {message: 'Contact information updated'}
 DELETE | /contact_info /profile    | YES   | user | Delete own contact_info       |                                               | { message: 'Contact information deleted' }
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
-Note: We will not use PUT for the user to create contact_info because it will be created directly from the Signup.
+* Note: We will not use POST for the user to create contact_info because it will be created directly from the Signup.
 
 ### Vets_info Endpoints
 
