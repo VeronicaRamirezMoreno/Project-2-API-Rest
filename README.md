@@ -58,8 +58,8 @@ GET    | /user/owner    | YES   | personnel | Get All Owners       |  `query par
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                 |  {user}
 POST   | /user/owner     | YES   | personnel |  Create one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
 POST   | /user     | YES   | admin |  Create one User     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
-PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
-PUT    | /user/:ownerId    | YES   | personnel |  Update one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI`,`role`  | {message: 'User updated'}
+PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
+PUT    | /user/:ownerId    | YES   | personnel |  Update one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` | {message: 'User updated'}
 PUT    | /user/password   | YES   | user  | Reset password          | `newPassword` `repeatPassword`                      | { message: 'Password updated }
 DELETE | /user/profile    | YES   | user | Delete own profile       |                                                    | { message: 'Profile deleted' }
 DELETE | /user/:ownerId    | YES   | personnel | Delete one Owner      |                                                   | {message: 'User deleted'}
