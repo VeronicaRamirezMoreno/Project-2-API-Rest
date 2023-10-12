@@ -8,7 +8,8 @@ function addRelationsToModels() {
 	try {
 
 		//One to Many
-		
+		User.hasMany(Appointment)
+		Appointment.belongsTo(User)
 		
 		//Many to Many
 		Treatment.belongsToMany(Appointment, {through:"Schedule", as: 'schedule', timestamps:false })
