@@ -2,7 +2,6 @@
 const User = require('../api/models/user.models')
 const Treatment = require ('../api/models/treatment.model')
 const Appointment = require ('../api/models/appointment.model')
-
 const Pet = require ('../api/models/pets.models')
 const ContactInfo =require ('../api/models/contact_info.models')
 const Vet =require ('../api/models/vets.models')
@@ -16,8 +15,11 @@ function addRelationsToModels() {
   
 		User.hasMany(Appointment)
 		Appointment.belongsTo(User)
+
+		Pet.hasMany(Appointment)
+		Appointment.belongsTo(Pet)
     
-    //One to One
+   		 //One to One
 		User.hasOne(ContactInfo)
 		ContactInfo.belongsTo(User)
     
