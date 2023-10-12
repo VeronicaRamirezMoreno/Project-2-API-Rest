@@ -6,36 +6,28 @@ const Pets = sequelize.define(
     {
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: false
         },
         birth_date: {
-            type: DataTypes.DATE,
-            validate: {
-                len: [0, 8] 
-              }
+            type: DataTypes.DATE
         },
         chip_num: {
-            type: DataTypes.NUMBER,
-            allowNull: false,
+            type: DataTypes.INTEGER            
         },
         species: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         },
         breed: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         },
         sex: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         },
         profile_picture: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING
         },
        comments: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         }
     },
         {timestamps: false}
