@@ -6,12 +6,14 @@ const Appointment = require ('../api/models/appointment.model')
 
 function addRelationsToModels() {
 	try {
+
+		//One to Many
+		
 		
 		//Many to Many
 		Treatment.belongsToMany(Appointment, {through:"Schedule", as: 'schedule', timestamps:false })
 		Appointment.belongsToMany(Treatment, {through:"Schedule", as: 'schedule', timestamps:false })
 		
-
 		console.log('Relations added to all models')
 	} catch (error) {
 		throw error
