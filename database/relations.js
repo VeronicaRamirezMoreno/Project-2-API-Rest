@@ -16,8 +16,11 @@ function addRelationsToModels() {
   
 		User.hasMany(Appointment)
 		Appointment.belongsTo(User)
-    
-    //One to One
+		
+		Pet.hasMany(Appointment)
+		Appointment.belongsToMany(Pet)
+		
+    	//One to One
 		User.hasOne(ContactInfo)
 		ContactInfo.belongsTo(User)
     
