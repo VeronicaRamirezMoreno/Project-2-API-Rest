@@ -9,7 +9,16 @@ const Pets = sequelize.define(
             allowNull: false
         },
         birth_date: {
-            type: DataTypes.DATE
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isDateValid(value) {
+                    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+                    if (!dateRegex.test(value)) {
+                        throw new Error('Incorrect date. Use the format YYYYY-MM-DD.');
+                    }
+                },
+            },
         },
         chip_num: {
             type: DataTypes.INTEGER            

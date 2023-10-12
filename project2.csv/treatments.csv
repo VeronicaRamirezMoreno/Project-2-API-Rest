@@ -1,0 +1,11 @@
+"id", "name", "description", "price"
+1, "Vacunación", "Vacuna anual para perros y gatos", 45.00
+2, "Esterilización", "Esterilización de mascotas", 150.00
+3, "Desparasitación", "Desparasitación interna y externa", 30.00
+4, "Cirugía de emergencia", "Cirugía de emergencia para mascotas", 300.00
+5, "Radiografía", "Radiografía diagnóstica", 75.00
+6, "Tratamiento dental", "Limpieza dental y extracción de dientes", 90.00
+7, "Quimioterapia", "Tratamiento de quimioterapia para cáncer", 250.00
+8, "Fisioterapia", "Fisioterapia para mascotas con movilidad reducida", 70.00
+9, "Análisis de sangre", "Análisis completo de sangre", 50.00
+10, "Ecografía", "Ecografía diagnóstica", 80.00
