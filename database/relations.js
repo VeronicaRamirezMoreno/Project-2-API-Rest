@@ -1,6 +1,7 @@
 //Requerir modelos 
 const User = require('../api/models/user.models')
 const Treatment = require ('../api/models/treatment.model')
+const Appointment = require ('../api/models/appointment.model')
 
 
 function addRelationsToModels() {

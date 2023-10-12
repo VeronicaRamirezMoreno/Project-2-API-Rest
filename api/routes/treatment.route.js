@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { getAllTreatments, getOneTreatment, createTreatment, updateTreatment, deleteTreatment } = require('../controllers/tratment.controllers')
+const { getAllTreatments, getOneTreatment, createTreatment, updateTreatment, deleteTreatment } = require('../controllers/treatment.controllers')
 
 router.get('/', getAllTreatments)
 router.get('/:treatmentId', getOneTreatment)
