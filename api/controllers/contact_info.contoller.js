@@ -1,4 +1,5 @@
 const ContactInfo = require('../models/contact_info.models')
+const User = require('../models/user.models')
 
 async function getAllContactInfo(req, res) {
 	try {
@@ -43,7 +44,7 @@ async function updateContactInfo(req, res) {
 		const [contactExist, contact_info] = await ContactInfo.update(req.body, {
 			returning: true,
 			where: {
-				id: req.params.contactId,
+				userId: req.params.userId
 			},
 		})
         if (contactExist !== 0) {

@@ -5,12 +5,10 @@ const Vet = sequelize.define(
 	'vet',
 	{
 		membership_num: {
-			type: DataTypes.STRING,
-			allowNull: false,
+			type: DataTypes.STRING		
 		},
 		specialization: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            type: DataTypes.STRING
         },
         phone: {
             type: DataTypes.STRING,
@@ -19,10 +17,7 @@ const Vet = sequelize.define(
               }
         },
         profile_picture: {
-            type: DataTypes.STRING,
-            validate:{
-                URL
-            }
+            type: DataTypes.STRING
             
         }       
     },

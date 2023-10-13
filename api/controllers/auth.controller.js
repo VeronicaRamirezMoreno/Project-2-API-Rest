@@ -16,13 +16,34 @@ const signUp = async (req, res) => {
         const salt = bcrypt.genSaltSync(parseInt(10))
         const encrypted = bcrypt.hashSync(req.body.password, salt)
         req.body.password = encrypted
-        //const contactInfo = await ContactInfo.create(req.body)
+
         const user = await User.create(req.body)
-       // const vet = await Vet.create(req.body)
-       // await contactInfo.setUser(user)
+
         const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
+
+        if(user.role === "personnel"){
+			const vetInfo = await Vet.create(req.body)
+			await vetInfo.setUser(user)
+
+        	return res.status(200).json({
+							message: 'Vet created',
+							user: user,
+							token: token
+        	})
+
+		}else if (user.role === "user"){		
+			const contactInfo = await ContactInfo.create(req.body)
+			await contactInfo.setUser(user)
+
+        	return res.status(200).json({
+							message: 'User created',
+							user: user,
+							vetInfo: contactInfo,
+							token: token
+			})
+		}else
         return res.status(200).json({
-            message: 'User created',
+            message: 'Admin created',
             name: user.first_name,
             email: user.email,
             token: token

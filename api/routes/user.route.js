@@ -14,7 +14,7 @@ const {
 
 router.get('/', getAllUsers)
 router.get('/:userId', getOneUser)
-router.post('/', checkPersonnel, createUser)
+router.post('/',checkPersonnel,checkAdmin, createUser)
 router.put('/:userId', updateUser)
 router.delete('/:userId', deleteUser)
 
