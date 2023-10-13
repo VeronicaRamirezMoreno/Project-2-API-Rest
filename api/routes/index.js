@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { checkAuth } = require("../../middlewares/auth");
+//const { checkAuth } = require("../../middlewares/auth");
 
 router.use('/user',require('./user.route'))
 router.use('/pet', require('./pets.route'))

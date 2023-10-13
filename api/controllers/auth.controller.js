@@ -13,9 +13,9 @@ const signUp = async (req, res) => {
             return res.status(400).json({ message: 'Password too short'})
         }
         const payload = {email: req.body.email}
-        // const salt = bcrypt.genSaltSync(parseInt(process.env.SALTROUNDS))
-        // const encrypted = bcrypt.hashSync(req.body.password, salt)
-        // req.body.password = encrypted
+        const salt = bcrypt.genSaltSync(parseInt(10))
+        const encrypted = bcrypt.hashSync(req.body.password, salt)
+        req.body.password = encrypted
         //const contactInfo = await ContactInfo.create(req.body)
         const user = await User.create(req.body)
        // const vet = await Vet.create(req.body)
@@ -23,6 +23,8 @@ const signUp = async (req, res) => {
         const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
         return res.status(200).json({
             message: 'User created',
+            name: user.first_name,
+            email: user.email,
             token: token
         })
     } catch (error) {
@@ -47,9 +49,9 @@ const login = async (req, res) => {
         const comparePassword = bcrypt.compareSync(req.body.password, user.password)
         if(comparePassword) {
             const payload = { email: user.email }
-            const token = jwt.sign(payload, 'secret', { expiresIn: '1h'})
-            const role = user.role
-            return res.status(200).json({ token, role })
+            // const token = jwt.sign(payload, 'secret', { expiresIn: '1h'})
+            // const role = user.role
+            return res.status(200).json( `User: ${user.first_name} logged-in ` )
         } else {
             return res
               .status(404)
