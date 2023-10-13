@@ -1,0 +1,89 @@
+-- Insertar los datos en la tabla "appointments"
+INSERT INTO appointments (id, appointment_date, appointment_time, description, duration, status) VALUES
+(1, '2023-10-19', '10:00', 'Revisión anual de Buddy', 30, 'available'),
+(2, '2023-10-21', '14:30', 'Esterilización de Luna', 120, 'available'),
+(3, '2023-10-23', '09:45', 'Desparasitación de Rocky', 15, 'available'),
+(4, '2023-10-25', '11:15', 'Cirugía de emergencia para Coco', 90, 'not_available'),
+(5, '2023-10-27', '13:00', 'Radiografía para Mia', 45, 'available'),
+(6, '2023-10-29', '15:30', 'Tratamiento dental para Simba', 60, 'available'),
+(7, '2023-10-31', '17:45', 'Quimioterapia para Bella', 75, 'available'),
+(8, '2023-11-02', '10:30', 'Fisioterapia para Max', 30, 'not_available'),
+(9, '2023-11-04', '12:00', 'Análisis de sangre para Milo', 60, 'available'),
+(10, '2023-11-06', '16:15', 'Ecografía para Lola', 45, 'available'),
+(11, '2023-10-19', '12:30', 'Control de peso para Max', 30, 'available'),
+(12, '2023-10-19', '15:30', 'Examen de salud para Bella', 60, 'available'),
+(13, '2023-10-19', '17:30', 'Vacunación de cachorros', 45, 'available'),
+(14, '2023-10-19', '10:30', 'Tratamiento para Lola', 30, 'available'),
+(15, '2023-10-19', '14:00', 'Cirugía de esterilización para Simba', 120, 'available');
+
+-- Insertar los datos en la tabla "contact_infos"
+INSERT INTO contact_infos (id, phone, address, userId) VALUES
+(1, '+34 612345678', 'Calle León y Castillo - Las Palmas - Gran Canaria', 1),
+(2, '+34 645678912', 'Avenida Mesa y López - Las Palmas - Gran Canaria', 2),
+(3, '+34 699876543', 'Calle Triana - Las Palmas - Gran Canaria', 3),
+(4, '+34 678901234', 'Calle Mayor de Triana - Las Palmas - Gran Canaria', 4),
+(5, '+34 623456789', 'Calle Luis Morote - Las Palmas - Gran Canaria', 5),
+(6, '+34 600987654', 'Avenida de Canarias - Vecindario - Gran Canaria', 6),
+(7, '+34 655432109', 'Calle Pérez Galdós - Las Palmas - Gran Canaria', 7),
+(8, '+34 611234567', 'Avenida de Gran Canaria - Arucas - Gran Canaria', 8),
+(9, '+34 677890123', 'Calle de Real - Telde - Gran Canaria', 9),
+(10, '+34 644321098', 'Avenida José Mesa y López - Las Palmas - Gran Canaria', 10);
+
+-- Insertar datos en la tabla "pets"
+INSERT INTO pets (id, name, birth_date, chip_num, species, breed, sex, profile_picture, comments) VALUES
+(1, 'Buddy', '2018-04-03', 123456789, 'Perro', 'Golden Retriever', 'Macho', 'url_imagen_buddy.jpg', 'Sin problemas de salud conocidos'),
+(2, 'Luna', '2020-01-15', 234567890, 'Perro', 'Labrador Retriever', 'Hembra', 'url_imagen_luna.jpg', 'Vacunada y desparasitada'),
+(3, 'Rocky', '2019-09-22', 345678901, 'Perro', 'Bulldog Francés', 'Macho', 'url_imagen_rocky.jpg', 'Control de pulgas necesario'),
+(4, 'Coco', '2017-07-11', 456789012, 'Perro', 'Poodle', 'Macho', 'url_imagen_coco.jpg', 'Sin problemas de salud conocidos'),
+(5, 'Mia', '2018-10-30', 567890123, 'Gato', 'Siamés', 'Hembra', 'url_imagen_mia.jpg', 'Esterilizada'),
+(6, 'Simba', '2020-03-19', 678901234, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_simba.jpg', 'Necesita atención dental'),
+(7, 'Bella', '2019-12-05', 789012345, 'Perro', 'Rottweiler', 'Hembra', 'url_imagen_bella.jpg', 'Sin problemas de salud conocidos'),
+(8, 'Max', '2018-08-28', 890123456, 'Perro', 'German Shepherd', 'Macho', 'url_imagen_max.jpg', 'Vacunado y desparasitado'),
+(9, 'Milo', '2021-04-17', 901234567, 'Perro', 'Yorkshire Terrier', 'Macho', 'url_imagen_milo.jpg', 'Control de pulgas necesario'),
+(10, 'Lola', '2019-11-09', 123456780, 'Perro', 'Beagle', 'Hembra', 'url_imagen_lola.jpg', 'Esterilizada'),
+(11, 'Gato 1', '2019-05-15', 123456789, 'Gato', 'Doméstico', 'Macho', 'url_imagen_gato_1.jpg', 'Sin problemas de salud conocidos'),
+(12, 'Gato 2', '2020-08-20', 987654321, 'Gato', 'Siamés', 'Hembra', 'url_imagen_gato_2.jpg', 'Vacunado y desparasitado'),
+(13, 'Gato 3', '2018-03-10', 234567890, 'Gato', 'Persa', 'Macho', 'url_imagen_gato_3.jpg', 'Diabetes controlada con medicación'),
+(14, 'Gato 4', '2019-11-27', 876543210, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_gato_4.jpg', 'Energético y juguetón'),
+(15, 'Gato 5', '2021-02-08', 345678901, 'Gato', 'Bengalí', 'Hembra', 'url_imagen_gato_5.jpg', 'Requiere alimentación especial'),
+(16, 'Gato 6', '2020-06-14', 765432109, 'Gato', 'Sphynx', 'Hembra', 'url_imagen_gato_6.jpg', 'Sin problemas de salud conocidos');
+
+-- Insertar datos en la tabla "treatments"
+INSERT INTO treatments (id, name, description, price) VALUES
+(1, 'Vacunación', 'Vacunación anual para perros y gatos.', 50.00),
+(2, 'Esterilización', 'Esterilización quirúrgica de mascotas.', 120.00),
+(3, 'Desparasitación', 'Desparasitación para prevenir infecciones.', 30.00),
+(4, 'Cirugía de emergencia', 'Cirugía de emergencia para mascotas.', 200.00),
+(5, 'Radiografía', 'Radiografía para diagnóstico médico.', 80.00),
+(6, 'Tratamiento dental', 'Limpieza dental y extracción de dientes.', 60.00),
+(7, 'Quimioterapia', 'Tratamiento oncológico para mascotas.', 150.00),
+(8, 'Fisioterapia', 'Fisioterapia para rehabilitación de mascotas.', 40.00),
+(9, 'Análisis de sangre', 'Análisis de sangre para diagnóstico médico.', 35.00),
+(10, 'Ecografía', 'Ecografía para diagnóstico médico.', 70.00);
+
+-- Insertar datos en la tabla "users" 
+INSERT INTO users (id, first_name, last_name, dni, email, password, role) VALUES
+(1, 'Juan', 'García', '12345678A', 'juan@example.com', 'password123', 'admin'),
+(2, 'Ana', 'Martínez', '98765432B', 'ana@example.com', 'securepass', 'personnel'),
+(3, 'Carlos', 'López', '87654321C', 'carlos@example.com', 'mypassword', 'user'),
+(4, 'María', 'Rodríguez', '76543210D', 'maria@example.com', 'pass123', 'user'),
+(5, 'Luis', 'Gómez', '65432109E', 'luis@example.com', 'mypassword123', 'personnel'),
+(6, 'Elena', 'Pérez', '54321098F', 'elena@example.com', 'securepass123', 'user'),
+(7, 'Pedro', 'Sánchez', '43210987G', 'pedro@example.com', 'mypassword456', 'user'),
+(8, 'Isabel', 'Hernández', '32109876H', 'isabel@example.com', 'password456', 'personnel'),
+(9, 'Sara', 'López', '21098765I', 'sara@example.com', 'securepass456', 'user'),
+(10, 'Javier', 'Torres', '10987654J', 'javier@example.com', 'mypassword789', 'user'),
+(11, 'Adrián', 'Suárez', '23456789K', 'adrian@example.com', 'contraseña_adrian', 'user');
+
+-- Insertar datos en la tabla "vets"
+INSERT INTO vets (membership_num, specialization, phone, profile_picture) VALUES
+('VET123', 'Cirugía', '+1234567890', 'https://example.com/vet1.jpg'),
+('VET456', 'Dermatología', '+2345678901', 'https://example.com/vet2.jpg'),
+('VET789', 'Oftalmología', '+3456789012', 'https://example.com/vet3.jpg'),
+('VET101', 'Cardiología', '+4567890123', 'https://example.com/vet4.jpg'),
+('VET202', 'Ortopedia', '+5678901234', 'https://example.com/vet5.jpg'),
+('VET303', 'Neurología', '+6789012345', 'https://example.com/vet6.jpg'),
+('VET404', 'Endocrinología', '+7890123456', 'https://example.com/vet7.jpg'),
+('VET505', 'Oncología', '+8901234567', 'https://example.com/vet8.jpg'),
+('VET606', 'Radiología', '+9012345678', 'https://example.com/vet9.jpg'),
+('VET707', 'Anestesiología', '+0123456789', 'https://example.com/vet10.jpg');
