@@ -18,7 +18,7 @@ function initializeAndListenWithExpress() {
 		.use(cors())
 		.use(morgan('dev'))
 		.use(express.json())
-		.use('/api', require('./api/routes'))
+		.use('/api', require('./api/routes/index'))
 
 		.listen(process.env.PORT, () => {
 			console.log(`> Listening on port: 3000`)
@@ -26,8 +26,13 @@ function initializeAndListenWithExpress() {
 }
 
 async function startAPI() {
-	await checkAndSyncPostgreSQL()
-	initializeAndListenWithExpress()
+	try {
+		await checkAndSyncPostgreSQL()
+		initializeAndListenWithExpress()
+	} catch (error) {
+		throw error
+	}
+	
 }
 
 startAPI()

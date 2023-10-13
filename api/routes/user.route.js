@@ -1,8 +1,17 @@
 const router = require('express').Router()
+const { checkAdmin } = require("../../middlewares/auth");
 
-const { getAllUsers, getOneUser, createUser, updateUser, deleteUser } = require('../controllers/user.controllers')
+const { 
+    getAllUsers, 
+    getOneUser, 
+    createUser, 
+    updateUser, 
+    deleteUser 
+} = require('../controllers/user.controllers')
 
-router.get('/', getAllUsers)
+
+
+router.get('/', checkAdmin, getAllUsers)
 router.get('/:userId', getOneUser)
 router.post('/', createUser)
 router.put('/:userId', updateUser)

@@ -20,6 +20,10 @@ const Vet = sequelize.define(
         },
         profile_picture: {
             type: DataTypes.STRING,
+            validate:{
+                URL
+            }
+            
         }       
     },
     {timestamps: false}
