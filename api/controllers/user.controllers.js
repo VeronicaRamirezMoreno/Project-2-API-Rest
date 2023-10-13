@@ -1,6 +1,8 @@
 const User = require('../models/user.models')
 const ContactInfo = require('../models/contact_info.models')
 const Vet = require('../models/vets.models')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 async function getAllUsers(req, res) {
 	try {
@@ -40,17 +42,36 @@ async function getOneUser(req, res) {
 
 async function createUser(req, res) {
 	try {
+		const payload = {email: req.body.email}
+        const salt = bcrypt.genSaltSync(parseInt(10))
+        const encrypted = bcrypt.hashSync(req.body.password, salt)
+        req.body.password = encrypted
+
 		const user = await User.create(req.body)
+
+		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
 		
-		if(user.role === "admin"){
+		if(user.role === "personnel"){
 			const vetInfo = await Vet.create(req.body)
 			await vetInfo.setUser(user)
-			return res.status(200).json({ message: 'Vet created', user, vetInfo})
 
-		}else if (user.role === "user"){
+        	return res.status(200).json({
+							message: 'Vet created',
+							user: user,
+							vetInfo: vetInfo,
+							token: token
+        	})
+
+		}else if (user.role === "user"){		
 			const contactInfo = await ContactInfo.create(req.body)
 			await contactInfo.setUser(user)
-			return res.status(200).json({ message: 'User created', user, contactInfo})
+
+        	return res.status(200).json({
+							message: 'User created',
+							user: user,
+							vetInfo: contactInfo,
+							token: token
+			})
 		}
 	} catch (error) {
 		res.status(500).send(error.message)
