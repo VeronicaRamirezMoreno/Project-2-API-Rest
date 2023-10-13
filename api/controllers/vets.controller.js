@@ -73,10 +73,31 @@ async function deleteVet(req, res) {
 	}
 }
 
+async function getVetProfile(req, res) {
+	try {
+	  const vet = await Vet.findOne({
+		where: {
+		  id: res.locals.vet.id,
+		},
+		include: {
+		  attributes: ["id", "membership_num", "specialization", "phone", "profile_picture"],
+		},
+	  });
+	  if (vet) {
+		return res.status(200).json({ vet });
+	  } else {
+		return res.status(404).json("Vet not found");
+	  }
+	} catch (error) {
+	  return res.status(500).json({ message: error.message });
+	}
+  }
+
 module.exports = {
 	getAllVet,
     getOneVet,
     createVet,
     updateVet,
-    deleteVet
+    deleteVet,
+	getVetProfile
 }

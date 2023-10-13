@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const User = require('../models/user.models')
+const User = require('..//models/user.models')
 require('dotenv').config()
 
 const checkAuth = async (req, res, next) => {
@@ -7,9 +7,7 @@ const checkAuth = async (req, res, next) => {
         return res.status(401).send('Token not found')
     }
 
-    jwt.verify(
-        req.headers.authorization,
-        process.env.SECRET,
+    jwt.verify(req.headers.authorization,process.env.SECRET,
         async (error, payload) => {
             if (error) {
                 console.log(error.message)
@@ -38,7 +36,15 @@ const checkAdmin = (req, res, next) => {
     next()
 }
 
+const checkPersonnel = (req, res, next) => {
+    if (res.locals.user.role === 'user') {
+        return res.status(401).send('User not authorized')
+    }
+    next()
+}
+
 module.exports = {
     checkAuth,
-    checkAdmin
+    checkAdmin,
+    checkPersonnel
 }

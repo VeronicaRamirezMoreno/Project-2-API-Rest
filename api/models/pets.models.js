@@ -21,7 +21,7 @@ const Pets = sequelize.define(
             },
         },
         chip_num: {
-            type: DataTypes.INTEGER            
+            type: DataTypes.INTEGER         
         },
         species: {
             type: DataTypes.STRING
