@@ -49,9 +49,10 @@ const login = async (req, res) => {
         const comparePassword = bcrypt.compareSync(req.body.password, user.password)
         if(comparePassword) {
             const payload = { email: user.email }
-            // const token = jwt.sign(payload, 'secret', { expiresIn: '1h'})
-            // const role = user.role
-            return res.status(200).json( `User: ${user.first_name} logged-in ` )
+            const token = jwt.sign(payload, 'secret', { expiresIn: '1h'})
+            const role = user.role
+            //const coment = `User: ${user.first_name} logged-in `
+            return res.status(200).json( {token, role} )
         } else {
             return res
               .status(404)

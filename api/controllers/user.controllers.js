@@ -1,4 +1,6 @@
 const User = require('../models/user.models')
+const ContactInfo = require('../models/contact_info.models')
+const Vet = require('../models/vets.models')
 
 async function getAllUsers(req, res) {
 	try {
@@ -39,7 +41,17 @@ async function getOneUser(req, res) {
 async function createUser(req, res) {
 	try {
 		const user = await User.create(req.body)
-		return res.status(200).json({ message: 'User created', user : user })
+		
+		if(user.role === "admin"){
+			const vetInfo = await Vet.create(req.body)
+			await vetInfo.setUser(user)
+			return res.status(200).json({ message: 'Vet created', user, vetInfo})
+
+		}else if (user.role === "user"){
+			const contactInfo = await ContactInfo.create(req.body)
+			await contactInfo.setUser(user)
+			return res.status(200).json({ message: 'User created', user, contactInfo})
+		}
 	} catch (error) {
 		res.status(500).send(error.message)
 	}

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-//const { checkAdmin } = require("../../middlewares/auth");
+const { checkAdmin , checkPersonnel} = require("../middlewares/auth");
 const { signUp, login } = require("../controllers/auth.controller");
 
 const { 
@@ -14,7 +14,7 @@ const {
 
 router.get('/', getAllUsers)
 router.get('/:userId', getOneUser)
-router.post('/',signUp, createUser)
+router.post('/', checkPersonnel, createUser)
 router.put('/:userId', updateUser)
 router.delete('/:userId', deleteUser)
 
