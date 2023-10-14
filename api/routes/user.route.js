@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const { checkAdmin , checkPersonnel} = require("../middlewares/auth");
-const { signUp, login } = require("../controllers/auth.controller");
 
 const { 
     getAllUsers, 
+    getOwnProfile,
     getOneUser, 
     createUser, 
     updateUser, 
@@ -13,6 +13,7 @@ const {
 
 
 router.get('/', getAllUsers)
+router.get('/profile', getOwnProfile);
 router.get('/:userId', getOneUser)
 router.post('/',checkPersonnel,checkAdmin, createUser)
 router.put('/:userId', updateUser)

@@ -24,6 +24,11 @@ const checkAuth = async (req, res, next) => {
                 return res.status(404).send('User not found')
             }
 
+            req.userData ={
+                userId: user.id,
+                userRole: user.role
+            }
+
             res.locals.user = user
             next()
         })
