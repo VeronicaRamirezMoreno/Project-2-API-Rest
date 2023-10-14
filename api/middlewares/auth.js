@@ -7,7 +7,7 @@ const checkAuth = async (req, res, next) => {
         return res.status(401).send('Token not found')
     }
 
-    jwt.verify(req.headers.authorization,process.env.SECRET,
+    jwt.verify(req.headers.authorization, process.env.SECRET,
         async (error, payload) => {
             if (error) {
                 console.log(error.message)
@@ -22,11 +22,6 @@ const checkAuth = async (req, res, next) => {
 
             if (!user) {
                 return res.status(404).send('User not found')
-            }
-
-            req.userData ={
-                userId: user.id,
-                userRole: user.role
             }
 
             res.locals.user = user

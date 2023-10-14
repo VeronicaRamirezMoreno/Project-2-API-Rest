@@ -6,54 +6,57 @@ const jwt = require('jsonwebtoken')
 
 async function getAllUsers(req, res) {
 	try {
-		const { userRole } = req.userData
-
-		if (userRole === 'admin') {
-			const users = await User.findAll({
-				where: req.query,
-				attributes: { exclude: ['password'] }
-			})
-
-			if (users) {
-				return res.status(200).json(users)
-			} else {
-				return res.status(404).send('No users found')
+		const users = await User.findAll({
+			where: req.query,
+			attributes: {
+				exclude: ['password']
 			}
-		} else if (userRole === 'personnel') {
-			const users = await User.findAll({
-				where: { role: 'user' },
-				attributes: { exclude: ['password'] }
-			})
-
-			if (users) {
-				return res.status(200).json(users)
-			} else {
-				return res.status(404).send('No users found')
-			}
+		})
+		if (users) {
+			return res.status(200).json(users)
 		} else {
-			return getOwnProfile(req, res);
+			return res.status(404).send('No users found')
 		}
 	} catch (error) {
-		res.status(500).send(error.message);
+		res.status(500).send(error.message)
+	}
+}
+
+async function getAllOwners(req, res) {
+	try {
+		const users = await User.findAll({
+			where: {
+				role: 'user'
+			},
+			attributes: {
+				exclude: ['password']
+			}
+		})
+		if (users) {
+			return res.status(200).json(users)
+		} else {
+			return res.status(404).send('No users found')
+		}
+	} catch (error) {
+		res.status(500).send(error.message)
 	}
 }
 
 async function getOwnProfile(req, res) {
 	try {
-		const { userId } = req.userData;
-		const user = await User.findByPk(userId, {
-			attributes: {
-				exclude: ['password']
+		const user = await User.findOne({
+			where: {
+				id: res.locals.user.id
 			}
-		});
+		})
 
 		if (user) {
-			return res.status(200).json(user);
+			return res.status(200).json(user)
 		} else {
-			return res.status(404).send('User not found');
+			return res.status(404).send('User not found')
 		}
 	} catch (error) {
-		res.status(500).send(error.message);
+		res.status(500).send(error.message)
 	}
 }
 
@@ -85,7 +88,7 @@ async function createUser(req, res) {
 
 		const user = await User.create(req.body, {
 			attributes: { exclude: ['password'] }
-		});
+		})
 
 
 		const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '24h' })
@@ -119,101 +122,126 @@ async function createUser(req, res) {
 
 async function updateUser(req, res) {
 	try {
-		const { userId, userRole } = req.userData
-		const targetUserId = req.params.userId
-
-		if (userRole === 'admin') {
-			const [userExist, user] = await User.update(req.body, {
-				returning: true,
-				where: {
-					id: targetUserId,
-				},
-			})
-			if (userExist !== 0) {
-				return res.status(200).json({ message: 'User updated', user: user })
-			}
-
-		} else if (userRole === 'personnel') {
-			const targetUser = await User.findByPk(targetUserId)
-
-			if (targetUser && targetUser.role === 'user') {
-				const [userExist, user] = await User.update(req.body, {
-					returning: true,
-					where: {
-						id: targetUserId,
-					},
-				})
-				if (userExist !== 0) {
-					return res.status(200).json({ message: 'User updated', user: user })
-				}
-			}
-		} else if (userId == targetUserId) {
-			const [userExist, user] = await User.update(req.body, {
-				returning: true,
-				where: {
-					id: targetUserId,
-				},
-			})
-			if (userExist !== 0) {
-				return res.status(200).json({ message: 'User updated', user: user })
-			}
+		const [userExist, user] = await User.update(req.body, {
+			returning: true,
+			where: {
+				id: req.params.userId,
+			},
+		})
+		if (userExist !== 0) {
+			return res.status(200).json({ message: 'User updated', user: user })
+		} else {
+			return res.status(404).send('User not found')
 		}
-		return res.status(401).send('User not authorized to update this user')
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+async function updateOwner(req, res) {
+	try {
+
+		const [userExist, user] = await User.update(req.body, {
+			returning: true,
+			where: {
+				id: req.params.userId,
+				role: 'user'
+			}
+		})
+		if (userExist !== 0 && user.role === "user") {
+			return res.status(200).json({ message: 'User updated', user: user })
+		} else if (user.role !== 'user') {
+			return res.status(401).send('User not authorized to update this user')
+		} else {
+			return res.status(404).send('User not found')
+		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+async function updateOwnUser(req, res) {
+	try {
+		const user = await User.update(req.body, {
+			where: {
+				id: res.locals.user.id,
+			}
+		})
+		if (user) {
+			return res.status(200).json({ message: 'User updated', user: user })
+		} else {
+			return res.status(404).send('User not found')
+		}
 
 	} catch (error) {
 		return res.status(500).send(error.message)
 	}
 }
 
-
 async function deleteUser(req, res) {
 	try {
-		const { userId, userRole } = req.userData;
-		const targetUserId = req.params.userId;
-
-		if (userRole === 'admin') {
-			const user = await User.destroy({
-				where: {
-					id: targetUserId,
-				},
-			});
-
-			if (user) {
-				return res.status(200).json('User deleted');
-			} else {
-				return res.status(404).send('User not found');
-			}
-		} else if (userRole === 'personnel') {
-			const targetUser = await User.findByPk(targetUserId);
-
-			if (targetUser && targetUser.role === 'user' || userId == targetUserId) {
-				const user = await User.destroy({
-					where: {
-						id: targetUserId,
-					},
-				});
-
-				if (user) {
-					return res.status(200).json('User deleted');
-				} else {
-					return res.status(404).send('User not found');
-				}
-			} else {
-				return res.status(401).send('User not authorized to delete this user');
-			}
+		const user = await User.destroy({
+			where: {
+				id: req.params.userId,
+			},
+		})
+		if (user) {
+			return res.status(200).send('User deleted')
+		} else {
+			return res.status(404).send('User not found')
 		}
 	} catch (error) {
-		return res.status(500).send(error.message);
+		return res.status(500).send(error.message)
 	}
 }
 
+async function deleteOwner(req, res) {
+    try {
+        const user = await User.destroy({
+            where: {
+                id: req.params.userId,
+                role: 'user' 
+            },
+        })
 
+        if (user) {
+            return res.status(200).send('User deleted')
+        } else {
+            return res.status(404).send('User not found or not authorized to delete this user')
+        }
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+}
+
+
+async function deleteOwnUser(req, res) {
+	try {
+		const user = await User.destroy({
+			where: {
+				id: res.locals.user.id
+			}
+		})
+		if (user) {
+			return res.status(200).send('User deleted')
+		} else {
+			return res.status(404).send('User not found')
+		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
 
 module.exports = {
 	getAllUsers,
 	getOwnProfile,
+	getAllOwners,
 	getOneUser,
 	createUser,
 	updateUser,
-	deleteUser
+	updateOwner,
+	updateOwnUser,
+	deleteUser,
+	deleteOwner,
+	deleteOwnUser
 }

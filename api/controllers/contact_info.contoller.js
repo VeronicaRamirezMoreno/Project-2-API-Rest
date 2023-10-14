@@ -3,18 +3,44 @@ const User = require('../models/user.models')
 
 async function getAllContactInfo(req, res) {
 	try {
-		const contact_info = await ContactInfo.findAll({
-			where: req.query
-		})
-		if (contact_info) {
-			return res.status(200).json(contact_info)
+		const { userRole } = req.userData
+
+		if (userRole === 'admin' || userRole === 'personnel') {
+			const contact_info = await ContactInfo.findAll({
+				where: req.query,
+			})
+			if (contact_info) {
+				return res.status(200).json(contact_info)
+			} else {
+				return res.status(404).send('No contact info found')
+			}
 		} else {
-			return res.status(404).send('No contact found')
+			return res.status(401).send('User not authorized to access this data')
 		}
 	} catch (error) {
-		res.status(500).send(error.message)
+		return res.status(500).send(error.message)
 	}
 }
+
+async function getOwnContactInfo(req, res) {
+	try {
+		const { userId } = req.userData
+		const contactInfo = await ContactInfo.findOne({
+			where: {
+				UserId: userId,
+			},
+		})
+
+		if (contactInfo) {
+			return res.status(200).json(contactInfo)
+		} else {
+			return res.status(404).send('Contact info not found for this user')
+		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
 
 async function getOneContactInfo(req, res) {
 	try {
@@ -29,15 +55,28 @@ async function getOneContactInfo(req, res) {
 	}
 }
 
-
 async function createContactInfo(req, res) {
 	try {
-		const contact_info = await ContactInfo.create(req.body)
+	  const { userId, userRole } = req.userData
+	  const newContactInfo = req.body
+  
+	  if (userRole === 'user' && userId === newContactInfo.UserId) {
+		const contact_info = await ContactInfo.create(newContactInfo)
 		return res.status(200).json({ message: 'Contact created', contact_info })
+	  }
+  
+	  if (userRole === 'admin' || userRole === 'personnel') {
+		const contact_info = await ContactInfo.create(newContactInfo)
+		return res.status(200).json({ message: 'Contact created', contact_info })
+	  }
+  	  return res.status(401).send('User not authorized to create this contact info')
 	} catch (error) {
-		res.status(500).send(error.message)
+	  res.status(500).send(error.message)
 	}
-}
+  }
+  
+  
+
 
 async function updateContactInfo(req, res) {
 	try {
@@ -47,7 +86,7 @@ async function updateContactInfo(req, res) {
 				userId: req.params.userId
 			},
 		})
-        if (contactExist !== 0) {
+		if (contactExist !== 0) {
 			return res.status(200).json({ message: 'Contact updated', contact_info })
 		} else {
 			return res.status(404).send('Contact not found')
@@ -76,8 +115,9 @@ async function deleteContactInfo(req, res) {
 
 module.exports = {
 	getAllContactInfo,
-    getOneContactInfo,
-    createContactInfo,
-    updateContactInfo,
-    deleteContactInfo
+	getOwnContactInfo,
+	getOneContactInfo,
+	createContactInfo,
+	updateContactInfo,
+	deleteContactInfo
 }
