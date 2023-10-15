@@ -1,21 +1,32 @@
 const router = require('express').Router()
 const { checkAdmin , checkPersonnel} = require("../middlewares/auth");
-const { signUp, login } = require("../controllers/auth.controller");
 
 const { 
     getAllUsers, 
+    getOwnProfile,
+    getAllOwners,
     getOneUser, 
     createUser, 
     updateUser, 
-    deleteUser 
+    updateOwner,
+    updateOwnUser,
+    deleteUser,
+    deleteOwner,
+    deleteOwnUser, 
 } = require('../controllers/user.controllers')
 
 
 
-router.get('/', getAllUsers)
+router.get('/',checkAdmin, getAllUsers)
+router.get('/owner',checkPersonnel, getAllOwners)
+router.get('/profile', getOwnProfile)
 router.get('/:userId', getOneUser)
-router.post('/',checkPersonnel,checkAdmin, createUser)
-router.put('/:userId', updateUser)
-router.delete('/:userId', deleteUser)
+router.post('/',checkPersonnel, createUser)
+router.put('/:userId', checkAdmin, updateUser)
+router.put('/owner/:userId', checkPersonnel, updateOwner)
+router.put('/me/profile', updateOwnUser)
+router.delete('/:userId',checkAdmin, deleteUser)
+router.delete('/owner/:userId',checkPersonnel, deleteOwner)
+router.delete('/me/profile', deleteOwnUser)
 
 module.exports = router

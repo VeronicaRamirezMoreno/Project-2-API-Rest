@@ -7,7 +7,7 @@ const checkAuth = async (req, res, next) => {
         return res.status(401).send('Token not found')
     }
 
-    jwt.verify(req.headers.authorization,process.env.SECRET,
+    jwt.verify(req.headers.authorization, process.env.SECRET,
         async (error, payload) => {
             if (error) {
                 console.log(error.message)
@@ -38,7 +38,7 @@ const checkAdmin = (req, res, next) => {
 
 const checkPersonnel = (req, res, next) => {
     if (res.locals.user.role === 'user') {
-        return res.status(401).send('User not authorized')
+        return res.status(401).send('User not authorized' )
     }
     next()
 }
