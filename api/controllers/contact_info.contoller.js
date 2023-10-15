@@ -48,26 +48,19 @@ async function getOneContactInfo(req, res) {
 	}
 }
 
+
 async function createContactInfo(req, res) {
 	try {
-		const { userId, userRole } = req.userData
-		const newContactInfo = req.body
-
-		if (userRole === 'user' && userId === newContactInfo.UserId) {
-			const contact_info = await ContactInfo.create(newContactInfo)
-			return res.status(200).json({ message: 'Contact created', contact_info })
-		}
-
-		if (userRole === 'admin' || userRole === 'personnel') {
-			const contact_info = await ContactInfo.create(newContactInfo)
-			return res.status(200).json({ message: 'Contact created', contact_info })
-		}
-		return res.status(401).send('User not authorized to create this contact info')
+		const contact_info = await ContactInfo.create(req.body, {
+			where: {
+				id: res.locals.user.id
+			}
+		})
+		return res.status(200).json({ message: 'Contact created', contact_info })
 	} catch (error) {
 		res.status(500).send(error.message)
 	}
 }
-
 
 
 async function updateContactInfo(req, res) {
@@ -75,7 +68,7 @@ async function updateContactInfo(req, res) {
 		const [contactExist, contact_info] = await ContactInfo.update(req.body, {
 			returning: true,
 			where: {
-				userId: req.params.userId
+				id: req.params.contactId
 			},
 		})
 		if (contactExist !== 0) {
@@ -92,7 +85,7 @@ async function deleteContactInfo(req, res) {
 	try {
 		const contact_info = await ContactInfo.destroy({
 			where: {
-				id: req.params.contactId,
+				id: req.params.contactId
 			},
 		})
 		if (contact_info) {
@@ -105,11 +98,12 @@ async function deleteContactInfo(req, res) {
 	}
 }
 
+
 module.exports = {
 	getAllContactInfo,
 	getOwnContactInfo,
 	getOneContactInfo,
 	createContactInfo,
 	updateContactInfo,
-	deleteContactInfo
+	deleteContactInfo,	
 }
