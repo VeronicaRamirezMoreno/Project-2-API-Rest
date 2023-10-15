@@ -1,4 +1,5 @@
 const Pet = require('../models/pets.models')
+const User = require('../models/user.models')
 
 async function getAllPets(req, res) {
 	try {
@@ -46,10 +47,36 @@ async function updatePet(req, res) {
 				id: req.params.petId,
 			},
 		})
-        if (petExist !== 0) {
+		if (petExist !== 0) {
 			return res.status(200).json({ message: 'Pet updated', pet })
 		} else {
 			return res.status(404).send('Pet not found')
+		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+async function addPetToUser(req, res) {
+	try {
+		const pet = await Pet.findOne({
+			where: {
+				id: req.params.petId
+			}
+		})
+		const user = await User.findOne({
+			where: {
+				id: req.params.userId
+			}
+		})
+		console.log(user)
+		console.log(pet)
+		if (pet && user) {
+			await user.addPet(pet)
+			return res.status(200).send(`${pet.name} added to ${user.first_name}`)
+		} else {
+			return res.status(404).send('Pet or user not found')
+
 		}
 	} catch (error) {
 		return res.status(500).send(error.message)
@@ -75,8 +102,9 @@ async function deletePet(req, res) {
 
 module.exports = {
 	getAllPets,
-    getOnePet,
-    createPet,
-    updatePet,
-    deletePet
+	getOnePet,
+	createPet,
+	updatePet,
+	addPetToUser,
+	deletePet
 }

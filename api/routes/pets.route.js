@@ -1,11 +1,13 @@
 const router = require('express').Router()
+const { checkAdmin , checkPersonnel} = require("../middlewares/auth");
 
-const { getAllPets, getOnePet, createPet, updatePet, deletePet } = require('../controllers/pets.controllers')
+const { getAllPets, getOnePet, createPet, updatePet,addPetToUser, deletePet } = require('../controllers/pets.controllers')
 
-router.get('/',  getAllPets)
-router.get('/:petId', getOnePet)
-router.post('/', createPet)
-router.put('/:petId', updatePet)
-router.delete('/:petId', deletePet)
+router.get('/', checkPersonnel, getAllPets)
+router.get('/:petId',checkPersonnel, getOnePet)
+router.post('/', checkPersonnel,createPet)
+router.put('/:petId',checkPersonnel, updatePet)
+router.put('/:petId/:userId',checkPersonnel, addPetToUser)
+router.delete('/:petId', checkPersonnel,deletePet)
 
 module.exports = router

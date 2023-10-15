@@ -1,6 +1,7 @@
 const User = require('../models/user.models')
 const ContactInfo = require('../models/contact_info.models')
 const Vet = require('../models/vets.models')
+const Pet = require('../models/pets.models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -28,6 +29,8 @@ async function getAllOwners(req, res) {
 			where: {
 				role: 'user'
 			},
+			include: {model:Pet},
+			
 			attributes: {
 				exclude: ['password']
 			}
@@ -47,7 +50,8 @@ async function getOwnProfile(req, res) {
 		const user = await User.findOne({
 			where: {
 				id: res.locals.user.id
-			}
+			}, 
+			include: {model:Pet}
 		})
 
 		if (user) {
