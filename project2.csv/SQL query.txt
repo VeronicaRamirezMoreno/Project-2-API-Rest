@@ -16,19 +16,6 @@ INSERT INTO appointments (id, appointment_date, appointment_time, description, d
 (14, '2023-10-19', '10:30', 'Tratamiento para Lola', 30, 'available'),
 (15, '2023-10-19', '14:00', 'Cirugía de esterilización para Simba', 120, 'available');
 
--- Insertar los datos en la tabla "contact_infos"
-INSERT INTO contact_infos (id, phone, address, userId) VALUES
-(1, '+34 612345678', 'Calle León y Castillo - Las Palmas - Gran Canaria', 1),
-(2, '+34 645678912', 'Avenida Mesa y López - Las Palmas - Gran Canaria', 2),
-(3, '+34 699876543', 'Calle Triana - Las Palmas - Gran Canaria', 3),
-(4, '+34 678901234', 'Calle Mayor de Triana - Las Palmas - Gran Canaria', 4),
-(5, '+34 623456789', 'Calle Luis Morote - Las Palmas - Gran Canaria', 5),
-(6, '+34 600987654', 'Avenida de Canarias - Vecindario - Gran Canaria', 6),
-(7, '+34 655432109', 'Calle Pérez Galdós - Las Palmas - Gran Canaria', 7),
-(8, '+34 611234567', 'Avenida de Gran Canaria - Arucas - Gran Canaria', 8),
-(9, '+34 677890123', 'Calle de Real - Telde - Gran Canaria', 9),
-(10, '+34 644321098', 'Avenida José Mesa y López - Las Palmas - Gran Canaria', 10);
-
 -- Insertar datos en la tabla "pets"
 INSERT INTO pets (id, name, birth_date, chip_num, species, breed, sex, profile_picture, comments) VALUES
 (1, 'Buddy', '2018-04-03', 123456789, 'Perro', 'Golden Retriever', 'Macho', 'url_imagen_buddy.jpg', 'Sin problemas de salud conocidos'),
@@ -72,18 +59,29 @@ INSERT INTO users (id, first_name, last_name, dni, email, password, role) VALUES
 (7, 'Pedro', 'Sánchez', '43210987G', 'pedro@example.com', 'mypassword456', 'user'),
 (8, 'Isabel', 'Hernández', '32109876H', 'isabel@example.com', 'password456', 'personnel'),
 (9, 'Sara', 'López', '21098765I', 'sara@example.com', 'securepass456', 'user'),
-(10, 'Javier', 'Torres', '10987654J', 'javier@example.com', 'mypassword789', 'user'),
-(11, 'Adrián', 'Suárez', '23456789K', 'adrian@example.com', 'contraseña_adrian', 'user');
+(10, 'Adrián', 'Suárez', '23456789K', 'adrian@example.com', 'contraseña_adrian', 'user'),
+(11, 'Laura', 'Gutiérrez', '34567890L', 'laura@example.com', 'mipassword123', 'personnel'),
+(12, 'Miguel', 'Fernández', '45678901M', 'miguel@example.com', 'clave_segura', 'user'),
+(13, 'Carmen', 'Pérez', '56789012N', 'carmen@example.com', 'contraseña_carmen', 'personnel'),
+(14, 'Manuel', 'González', '67890123O', 'manuel@example.com', 'clave123', 'user'),
+(15, 'Patricia', 'Martín', '78901234P', 'patricia@example.com', 'mi_contraseña', 'personnel');
+
+-- Insertar los datos en la tabla "contact_infos"
+INSERT INTO contact_infos (id, phone, address, userId) VALUES
+(1, '+34 612345678', 'Calle León y Castillo - Las Palmas - Gran Canaria',3),
+(2, '+34 645678912', 'Avenida Mesa y López - Las Palmas - Gran Canaria',4),
+(3, '+34 699876543', 'Calle Triana - Las Palmas - Gran Canaria',6),
+(4, '+34 678901234', 'Calle Mayor de Triana - Las Palmas - Gran Canaria',7),
+(5, '+34 623456789', 'Calle Luis Morote - Las Palmas - Gran Canaria',9),
+(6, '+34 600987654', 'Avenida de Canarias - Vecindario - Gran Canaria',10),
+(7, '+34 655432109', 'Calle Pérez Galdós - Las Palmas - Gran Canaria',12),
+(8, '+34 611234567', 'Avenida de Gran Canaria - Arucas - Gran Canaria',14);
 
 -- Insertar datos en la tabla "vets"
-INSERT INTO vets (membership_num, specialization, phone, profile_picture) VALUES
-('VET123', 'Cirugía', '+1234567890', 'https://example.com/vet1.jpg'),
-('VET456', 'Dermatología', '+2345678901', 'https://example.com/vet2.jpg'),
-('VET789', 'Oftalmología', '+3456789012', 'https://example.com/vet3.jpg'),
-('VET101', 'Cardiología', '+4567890123', 'https://example.com/vet4.jpg'),
-('VET202', 'Ortopedia', '+5678901234', 'https://example.com/vet5.jpg'),
-('VET303', 'Neurología', '+6789012345', 'https://example.com/vet6.jpg'),
-('VET404', 'Endocrinología', '+7890123456', 'https://example.com/vet7.jpg'),
-('VET505', 'Oncología', '+8901234567', 'https://example.com/vet8.jpg'),
-('VET606', 'Radiología', '+9012345678', 'https://example.com/vet9.jpg'),
-('VET707', 'Anestesiología', '+0123456789', 'https://example.com/vet10.jpg');
+INSERT INTO vets (membership_num, specialization, phone, profile_picture, userId) VALUES
+('VET123', 'Cirugía', '+1234567890', 'https://example.com/vet1.jpg',2),
+('VET456', 'Dermatología', '+2345678901', 'https://example.com/vet2.jpg',5),
+('VET789', 'Oftalmología', '+3456789012', 'https://example.com/vet3.jpg',8),
+('VET101', 'Cardiología', '+4567890123', 'https://example.com/vet4.jpg',11),
+('VET202', 'Ortopedia', '+5678901234', 'https://example.com/vet5.jpg',13),
+('VET303', 'Neurología', '+6789012345', 'https://example.com/vet6.jpg',15);
