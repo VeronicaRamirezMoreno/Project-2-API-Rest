@@ -38,7 +38,7 @@ const checkAdmin = (req, res, next) => {
 
 const checkPersonnel = (req, res, next) => {
     if (res.locals.user.role === 'user') {
-        return res.status(401).send('User not authorized')
+        return res.status(401).send('User not authorized' )
     }
     next()
 }

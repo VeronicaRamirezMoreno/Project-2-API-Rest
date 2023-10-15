@@ -24,9 +24,9 @@ router.get('/:userId', getOneUser)
 router.post('/',checkPersonnel, createUser)
 router.put('/:userId', checkAdmin, updateUser)
 router.put('/owner/:userId', checkPersonnel, updateOwner)
-router.put('/profile', updateOwnUser)
+router.put('/me/profile', updateOwnUser)
 router.delete('/:userId',checkAdmin, deleteUser)
 router.delete('/owner/:userId',checkPersonnel, deleteOwner)
-router.delete('/profile', deleteOwnUser)
+router.delete('/me/profile', deleteOwnUser)
 
 module.exports = router

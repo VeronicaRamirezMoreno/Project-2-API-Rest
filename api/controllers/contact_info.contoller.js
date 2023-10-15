@@ -70,7 +70,6 @@ async function createContactInfo(req, res) {
 
 
 
-
 async function updateContactInfo(req, res) {
 	try {
 		const [contactExist, contact_info] = await ContactInfo.update(req.body, {
