@@ -4,14 +4,20 @@ const { checkAdmin , checkPersonnel} = require("../middlewares/auth");
 const {
     getAllAppointments,
     getOneAppointment,
+    getVetAppointments,
+    getPetAppointments,
     createAppointment,
     updateAppointment,
     deleteAppointment } = require('../controllers/appointment.controller')
 
 router.get('/', checkPersonnel, getAllAppointments)
 router.get('/:appointmentId', checkPersonnel,getOneAppointment)
+router.get('/vet/:vetId',checkPersonnel, getVetAppointments);
 router.post('/', checkPersonnel,createAppointment)
 router.put('/:appointmentId',checkPersonnel, updateAppointment)
 router.delete('/:appointmentId',checkPersonnel, deleteAppointment)
+
+router.get ('/owner/appointments', getPetAppointments)
+
 
 module.exports = router

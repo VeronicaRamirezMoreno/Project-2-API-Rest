@@ -31,14 +31,13 @@ const Appointment = sequelize.define(
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         duration: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
             validate: {
                 isDurationValid(value) {
-                    const minDuration = 15; // Minutes
                     const maxDuration = 240; // Minutes
                     const duration = parseInt(value, 10);
                     if (isNaN(duration) || duration < minDuration || duration > maxDuration) {

@@ -24,15 +24,15 @@ async function getOneAppointment(req, res) {
 		const appointment = await Appointment.findByPk(req.params.appointmentId, {
 			include: [
 				{
-					model: Pet, 
-					as:'pet',
+					model: Pet,
+					as: 'pet',
 					attributes: ['name'],
 				},
-		
+
 				{
-					model: User, 
-					as:'user',
-					attributes: ['first_name'],	
+					model: User,
+					as: 'user',
+					attributes: ['first_name'],
 				}
 			]
 		})
@@ -46,14 +46,67 @@ async function getOneAppointment(req, res) {
 	}
 }
 
+async function getVetAppointments(req, res) {
+	const { vetId } = req.params
+
+	try {
+		const vet = await User.findOne({ where: { id: vetId } })
+
+		if (!vet) {
+			return res.status(404).send('Vet not found')
+		}
+
+		const vetAppointments = await Appointment.findAll({
+			where: {
+				userId: vetId,
+			},
+			include: [Pet],
+		})
+
+		if (vetAppointments) {
+			const message = `Appointment schedule of ${vet.first_name}`
+			return res.status(200).json({ message, appointments: vetAppointments })
+		} else {
+			return res.status(404).send('No appointments found for this vet')
+		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+
+async function getPetAppointments(req, res) {
+
+	try {
+
+		const user = await User.findOne({
+			where: {
+				id: res.locals.user.id
+			},
+			include: { model: Pet }
+		})
+		if (!user) {
+			return res.status(404).send('User not found')
+		}
+
+		const message = `${user.first_name}, these are the upcoming appointments for your pets.`
+		const petAppointments = user.pets
+		res.status(200).json({ message, petAppointments })
+
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+
 async function createAppointment(req, res) {
 	try {
-		const {userId, petId} = req.body
+		const { userId, petId } = req.body
 		const vet = await User.findByPk(userId)
 		const pet = await Pet.findByPk(petId)
 
 		if (!vet || !pet) {
-			return res.status(400).json({ error: 'Vet or pet not found' });
+			return res.status(400).json({ error: 'Vet or pet not found' })
 		}
 
 		const appointment = await Appointment.create(req.body)
@@ -104,6 +157,8 @@ async function deleteAppointment(req, res) {
 module.exports = {
 	getAllAppointments,
 	getOneAppointment,
+	getVetAppointments,
+	getPetAppointments,
 	createAppointment,
 	updateAppointment,
 	deleteAppointment
