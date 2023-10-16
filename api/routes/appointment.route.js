@@ -19,10 +19,10 @@ const {
     router.get ('/owner/appointments', getPetAppointments)
     router.get('/owner/available',getAvailableAppointments)
 
-    router.post('/', checkPersonnel,createAppointment)
+    router.post('/:vetId', checkPersonnel,createAppointment)
 
     router.put('/:appointmentId',checkPersonnel, updateAppointment)  
-    router.put('/book/:appointmentId/pet/:petId', bookAppointment)
+    router.put('/book/:appointmentId', bookAppointment)
 
     router.delete('/:appointmentId',checkPersonnel, deleteAppointment)
    
