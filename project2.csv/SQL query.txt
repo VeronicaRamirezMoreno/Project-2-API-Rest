@@ -50,21 +50,21 @@ INSERT INTO treatments (id, name, description, price) VALUES
 
 -- Insertar datos en la tabla "users" 
 INSERT INTO users (id, first_name, last_name, dni, email, password, role) VALUES
-(1, 'Juan', 'García', '12345678A', 'juan@example.com', 'password123', 'admin'),
-(2, 'Ana', 'Martínez', '98765432B', 'ana@example.com', 'securepass', 'personnel'),
-(3, 'Carlos', 'López', '87654321C', 'carlos@example.com', 'mypassword', 'user'),
-(4, 'María', 'Rodríguez', '76543210D', 'maria@example.com', 'pass123', 'user'),
-(5, 'Luis', 'Gómez', '65432109E', 'luis@example.com', 'mypassword123', 'personnel'),
-(6, 'Elena', 'Pérez', '54321098F', 'elena@example.com', 'securepass123', 'user'),
-(7, 'Pedro', 'Sánchez', '43210987G', 'pedro@example.com', 'mypassword456', 'user'),
-(8, 'Isabel', 'Hernández', '32109876H', 'isabel@example.com', 'password456', 'personnel'),
-(9, 'Sara', 'López', '21098765I', 'sara@example.com', 'securepass456', 'user'),
-(10, 'Adrián', 'Suárez', '23456789K', 'adrian@example.com', 'contraseña_adrian', 'user'),
-(11, 'Laura', 'Gutiérrez', '34567890L', 'laura@example.com', 'mipassword123', 'personnel'),
-(12, 'Miguel', 'Fernández', '45678901M', 'miguel@example.com', 'clave_segura', 'user'),
-(13, 'Carmen', 'Pérez', '56789012N', 'carmen@example.com', 'contraseña_carmen', 'personnel'),
-(14, 'Manuel', 'González', '67890123O', 'manuel@example.com', 'clave123', 'user'),
-(15, 'Patricia', 'Martín', '78901234P', 'patricia@example.com', 'mi_contraseña', 'personnel');
+(1, 'Juan', 'García', '12345678A', 'juan@gmail.com', '$2b$10$c98ItA.96Ee.8ypSX5KFnOX7hH0BDIEzTGqUtqZhsXvDdwVQzeUcC', 'admin'),
+(2, 'Ana', 'Martínez', '98765432B', 'ana@gmail.com', 'P9joEHK9pI9wwjVVJJSQg1zIW', 'personnel'),
+(3, 'Carlos', 'López', '87654321C', 'carlos@gmail.com', '$2b$10$0Xs9AyXHJ24liobsGTspoOdEE5dw.ADTNAmxMa.epSz0Tv15sHg7y', 'user'),
+(4, 'María', 'Rodríguez', '76543210D', 'maria@gmail.com', '$2b$10$XW/OwjXqek/l3wCZd19P/OT6BI2XuddOvhX8eRTNpv.w.CMlDuH/e', 'user'),
+(5, 'Luis', 'Gómez', '65432109E', 'luis@gmail.com', '$2b$10$KB.pRf3F2dwZC9kpABp4YOJrzwTXBPDk7QHYn5oy3nXXPHb5PtjsS', 'personnel'),
+(6, 'Elena', 'Pérez', '54321098F', 'elena@gmail.com', '$2b$10$uvoKbgytlG5TMmqNvG0kuelt9zEXy8WSpf.ZmKQCVSkF8FKyNAcP.', 'user'),
+(7, 'Pedro', 'Sánchez', '43210987G', 'pedro@gmail.com', '$2b$10$0l9rYpS/TnbaGHfKkA8EQuPig682kA4.zS4ZMveVCl9.RG12kneA2', 'user'),
+(8, 'Isabel', 'Hernández', '32109876H', 'isabel@gmail.com', '$2b$10$.crLWlO7atgiyCCFfl3wVueJI4KdMdM3Olav5pSO05XI7d6tzmZRG', 'personnel'),
+(9, 'Sara', 'López', '21098765I', 'sara@gmail.com', '$2b$10$K4azBTroq6spNsqJCf7Ab.Qq16gqDiiOIqjka75n2uKQHV5CaT7eu', 'user'),
+(10, 'Adrián', 'Suárez', '23456789K', 'adrian@gmail.com', '$2b$10$PJVTpQzSZfyvZgqDyJToOexEuGDqUTuZ3PHKIulb3bIYxfSFl2Bjm', 'user'),
+(11, 'Laura', 'Gutiérrez', '34567890L', 'laura@gmail.com', '$2b$10$R7vH/oe8agShDHkBKtWLuu/tjFgo1Uv4L2P0.mM2geryuyG3JqZRK', 'personnel'),
+(12, 'Miguel', 'Fernández', '45678901M', 'miguel@gmail.com', '$2b$10$uWNEwGGngECi8o0f36tIhO1H7j.gfF0dnrPQmzacTdkdznG6b6ceC', 'user'),
+(13, 'Carmen', 'Pérez', '56789012N', 'carmen@gmail.com', '$2b$10$n/w1xqgthYdOLaQg62xNpOrIef2iEZCEUm2W9f9vjTdGum/iGmDoe', 'personnel'),
+(14, 'Manuel', 'González', '67890123O', 'manuel@gmail.com', '$2b$10$X9Ra.5ScSWNB2BlFMHG17OFbBuIU19eekMF44AUN97.MDkTG5zho.', 'user'),
+(15, 'Patricia', 'Martín', '78901234P', 'patricia@gmail.com', '$2b$10$Zi3TUSXMRihyDdsekh1y7.eH3tFReKK5tFcVDVJia7nD.KvKcT8wC', 'personnel');
 
 -- Insertar los datos en la tabla "contact_infos"
 INSERT INTO contact_infos (id, phone, address, userId) VALUES
@@ -79,9 +79,9 @@ INSERT INTO contact_infos (id, phone, address, userId) VALUES
 
 -- Insertar datos en la tabla "vets"
 INSERT INTO vets (membership_num, specialization, phone, profile_picture, userId) VALUES
-('VET123', 'Cirugía', '+1234567890', 'https://example.com/vet1.jpg',2),
-('VET456', 'Dermatología', '+2345678901', 'https://example.com/vet2.jpg',5),
-('VET789', 'Oftalmología', '+3456789012', 'https://example.com/vet3.jpg',8),
-('VET101', 'Cardiología', '+4567890123', 'https://example.com/vet4.jpg',11),
-('VET202', 'Ortopedia', '+5678901234', 'https://example.com/vet5.jpg',13),
-('VET303', 'Neurología', '+6789012345', 'https://example.com/vet6.jpg',15);
+('VET123', 'Cirugía', '+1234567890', 'https://gmail.com/vet1.jpg',2),
+('VET456', 'Dermatología', '+2345678901', 'https://gmail.com/vet2.jpg',5),
+('VET789', 'Oftalmología', '+3456789012', 'https://gmail.com/vet3.jpg',8),
+('VET101', 'Cardiología', '+4567890123', 'https://gmail.com/vet4.jpg',11),
+('VET202', 'Ortopedia', '+5678901234', 'https://gmail.com/vet5.jpg',13),
+('VET303', 'Neurología', '+6789012345', 'https://gmail.com/vet6.jpg',15);

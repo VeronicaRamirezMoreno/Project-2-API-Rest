@@ -33,7 +33,15 @@ async function getOnePet(req, res) {
 async function createPet(req, res) {
 	try {
 		const pet = await Pet.create(req.body)
-		return res.status(200).json({ message: 'Pet created', pet })
+		const userId = req.params.userId
+		const user = await User.findByPk(userId)
+
+		if(!user){
+			return res.status(404).send('User not found')
+		}
+		await user.addPet(pet)
+
+		return res.status(200).json({ message: `${pet.name} created and added to ${user.first_name}`, pet })
 	} catch (error) {
 		res.status(500).send(error.message)
 	}
@@ -69,8 +77,6 @@ async function addPetToUser(req, res) {
 				id: req.params.userId
 			}
 		})
-		console.log(user)
-		console.log(pet)
 		if (pet && user) {
 			await user.addPet(pet)
 			return res.status(200).send(`${pet.name} added to ${user.first_name}`)
