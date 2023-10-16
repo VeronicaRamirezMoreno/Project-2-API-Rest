@@ -14,7 +14,7 @@ INSERT INTO treatments (id, name, description, price) VALUES
 -- Insertar datos en la tabla "users" 
 INSERT INTO users (id, first_name, last_name, dni, email, password, role) VALUES
 (1, 'Juan', 'García', '12345678A', 'juan@gmail.com', '$2b$10$c98ItA.96Ee.8ypSX5KFnOX7hH0BDIEzTGqUtqZhsXvDdwVQzeUcC', 'admin'),
-(2, 'Ana', 'Martínez', '98765432B', 'ana@gmail.com', 'P9joEHK9pI9wwjVVJJSQg1zIW', 'personnel'),
+(2, 'Ana', 'Martínez', '98765432B', 'ana@gmail.com', '$2b$10$phzLuUpc1zANIm823k463um2rNHcdSbVn2NAaE6ruuB5E..BKBJJe', 'personnel'),
 (3, 'Carlos', 'López', '87654321C', 'carlos@gmail.com', '$2b$10$0Xs9AyXHJ24liobsGTspoOdEE5dw.ADTNAmxMa.epSz0Tv15sHg7y', 'user'),
 (4, 'María', 'Rodríguez', '76543210D', 'maria@gmail.com', '$2b$10$XW/OwjXqek/l3wCZd19P/OT6BI2XuddOvhX8eRTNpv.w.CMlDuH/e', 'user'),
 (5, 'Luis', 'Gómez', '65432109E', 'luis@gmail.com', '$2b$10$KB.pRf3F2dwZC9kpABp4YOJrzwTXBPDk7QHYn5oy3nXXPHb5PtjsS', 'personnel'),
