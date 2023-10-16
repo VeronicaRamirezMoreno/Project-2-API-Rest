@@ -139,7 +139,12 @@ async function bookAppointment(req, res) {
 		const { treatmentId } = req.body
 		const treatment = await Treatment.findByPk(treatmentId)
 		const appointment = await Appointment.findByPk(req.params.appointmentId)
-		const updateAppointment = await Appointment.update( req.body,{
+		const updateAppointment = await Appointment.update(
+		{
+			description: treatment.description, 
+			petId: req.body.petId
+		},
+		{
 			where:{
 				id: req.params.appointmentId
 		}})
@@ -148,8 +153,7 @@ async function bookAppointment(req, res) {
 			if (appointment.status === 'available' && updateAppointment) {
 				appointment.status = 'not_available'
 				await appointment.save()
-				
-				 return res.status(200).json({ message: 'Appointment booked successfully'})
+				return res.status(200).json({ message: 'Appointment booked successfully'})
 			} else {
 				return res.status(409).send('Appointment is not available for booking')
 			}
