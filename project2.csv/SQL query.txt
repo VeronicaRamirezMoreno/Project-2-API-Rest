@@ -17,23 +17,23 @@ INSERT INTO appointments (id, appointment_date, appointment_time, description, d
 (15, '2023-10-19', '14:00', 'Cirugía de esterilización para Simba', 120, 'available');
 
 -- Insertar datos en la tabla "pets"
-INSERT INTO pets (id, name, birth_date, chip_num, species, breed, sex, profile_picture, comments) VALUES
-(1, 'Buddy', '2018-04-03', 123456789, 'Perro', 'Golden Retriever', 'Macho', 'url_imagen_buddy.jpg', 'Sin problemas de salud conocidos'),
-(2, 'Luna', '2020-01-15', 234567890, 'Perro', 'Labrador Retriever', 'Hembra', 'url_imagen_luna.jpg', 'Vacunada y desparasitada'),
-(3, 'Rocky', '2019-09-22', 345678901, 'Perro', 'Bulldog Francés', 'Macho', 'url_imagen_rocky.jpg', 'Control de pulgas necesario'),
-(4, 'Coco', '2017-07-11', 456789012, 'Perro', 'Poodle', 'Macho', 'url_imagen_coco.jpg', 'Sin problemas de salud conocidos'),
-(5, 'Mia', '2018-10-30', 567890123, 'Gato', 'Siamés', 'Hembra', 'url_imagen_mia.jpg', 'Esterilizada'),
-(6, 'Simba', '2020-03-19', 678901234, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_simba.jpg', 'Necesita atención dental'),
-(7, 'Bella', '2019-12-05', 789012345, 'Perro', 'Rottweiler', 'Hembra', 'url_imagen_bella.jpg', 'Sin problemas de salud conocidos'),
-(8, 'Max', '2018-08-28', 890123456, 'Perro', 'German Shepherd', 'Macho', 'url_imagen_max.jpg', 'Vacunado y desparasitado'),
-(9, 'Milo', '2021-04-17', 901234567, 'Perro', 'Yorkshire Terrier', 'Macho', 'url_imagen_milo.jpg', 'Control de pulgas necesario'),
-(10, 'Lola', '2019-11-09', 123456780, 'Perro', 'Beagle', 'Hembra', 'url_imagen_lola.jpg', 'Esterilizada'),
-(11, 'Gato 1', '2019-05-15', 123456789, 'Gato', 'Doméstico', 'Macho', 'url_imagen_gato_1.jpg', 'Sin problemas de salud conocidos'),
-(12, 'Gato 2', '2020-08-20', 987654321, 'Gato', 'Siamés', 'Hembra', 'url_imagen_gato_2.jpg', 'Vacunado y desparasitado'),
-(13, 'Gato 3', '2018-03-10', 234567890, 'Gato', 'Persa', 'Macho', 'url_imagen_gato_3.jpg', 'Diabetes controlada con medicación'),
-(14, 'Gato 4', '2019-11-27', 876543210, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_gato_4.jpg', 'Energético y juguetón'),
-(15, 'Gato 5', '2021-02-08', 345678901, 'Gato', 'Bengalí', 'Hembra', 'url_imagen_gato_5.jpg', 'Requiere alimentación especial'),
-(16, 'Gato 6', '2020-06-14', 765432109, 'Gato', 'Sphynx', 'Hembra', 'url_imagen_gato_6.jpg', 'Sin problemas de salud conocidos');
+INSERT INTO pets (id, name, birth_date, chip_num, species, breed, sex, profile_picture, comments, userId) VALUES
+(1, 'Buddy', '2018-04-03', 123456789, 'Perro', 'Golden Retriever', 'Macho', 'url_imagen_buddy.jpg', 'Sin problemas de salud conocidos',3),
+(2, 'Luna', '2020-01-15', 234567890, 'Perro', 'Labrador Retriever', 'Hembra', 'url_imagen_luna.jpg', 'Vacunada y desparasitada',4),
+(3, 'Rocky', '2019-09-22', 345678901, 'Perro', 'Bulldog Francés', 'Macho', 'url_imagen_rocky.jpg', 'Control de pulgas necesario',6),
+(4, 'Coco', '2017-07-11', 456789012, 'Perro', 'Poodle', 'Macho', 'url_imagen_coco.jpg', 'Sin problemas de salud conocidos',7),
+(5, 'Mia', '2018-10-30', 567890123, 'Gato', 'Siamés', 'Hembra', 'url_imagen_mia.jpg', 'Esterilizada',9),
+(6, 'Simba', '2020-03-19', 678901234, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_simba.jpg', 'Necesita atención dental',12),
+(7, 'Bella', '2019-12-05', 789012345, 'Perro', 'Rottweiler', 'Hembra', 'url_imagen_bella.jpg', 'Sin problemas de salud conocidos',14),
+(8, 'Max', '2018-08-28', 890123456, 'Perro', 'German Shepherd', 'Macho', 'url_imagen_max.jpg', 'Vacunado y desparasitado',9),
+(9, 'Milo', '2021-04-17', 901234567, 'Perro', 'Yorkshire Terrier', 'Macho', 'url_imagen_milo.jpg', 'Control de pulgas necesario',3),
+(10, 'Lola', '2019-11-09', 123456780, 'Perro', 'Beagle', 'Hembra', 'url_imagen_lola.jpg', 'Esterilizada',4),
+(11, 'Gato 1', '2019-05-15', 123456789, 'Gato', 'Doméstico', 'Macho', 'url_imagen_gato_1.jpg', 'Sin problemas de salud conocidos',10),
+(12, 'Gato 2', '2020-08-20', 987654321, 'Gato', 'Siamés', 'Hembra', 'url_imagen_gato_2.jpg', 'Vacunado y desparasitado',10),
+(13, 'Gato 3', '2018-03-10', 234567890, 'Gato', 'Persa', 'Macho', 'url_imagen_gato_3.jpg', 'Diabetes controlada con medicación',10),
+(14, 'Gato 4', '2019-11-27', 876543210, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_gato_4.jpg', 'Energético y juguetón',10),
+(15, 'Gato 5', '2021-02-08', 345678901, 'Gato', 'Bengalí', 'Hembra', 'url_imagen_gato_5.jpg', 'Requiere alimentación especial',10),
+(16, 'Gato 6', '2020-06-14', 765432109, 'Gato', 'Sphynx', 'Hembra', 'url_imagen_gato_6.jpg', 'Sin problemas de salud conocidos',10);
 
 -- Insertar datos en la tabla "treatments"
 INSERT INTO treatments (id, name, description, price) VALUES
