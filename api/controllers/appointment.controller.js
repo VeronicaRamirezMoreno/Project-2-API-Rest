@@ -1,9 +1,13 @@
 const Appointment = require('../models/appointment.model')
+const Vet = require('../models/vets.models')
+const Pet = require('../models/pets.models')
+const User = require('../models/user.models')
 
 async function getAllAppointments(req, res) {
 	try {
 		const appointments = await Appointment.findAll({
-			where: req.query           
+			where: req.query,
+			include: { model: Vet, model: Pet }
 		})
 		if (appointments) {
 			return res.status(200).json(appointments)
@@ -17,9 +21,23 @@ async function getAllAppointments(req, res) {
 
 async function getOneAppointment(req, res) {
 	try {
-		const appointment = await Appointment.findByPk(req.params.appointmentId)
+		const appointment = await Appointment.findByPk(req.params.appointmentId, {
+			include: [
+				{
+					model: Pet, 
+					as:'pet',
+					attributes: ['name'],
+				},
+		
+				{
+					model: User, 
+					as:'user',
+					attributes: ['first_name'],	
+				}
+			]
+		})
 		if (appointment) {
-			return res.status(200).json(appointment)
+			return res.status(200).json({ message: `${appointment.pet.name} has an appointment with ${appointment.user.first_name}`, appointment })
 		} else {
 			return res.status(404).send('Appointment not found')
 		}
@@ -31,7 +49,7 @@ async function getOneAppointment(req, res) {
 async function createAppointment(req, res) {
 	try {
 		const appointment = await Appointment.create(req.body)
-		return res.status(200).json({ message: 'Appointment created', appointment : appointment })
+		return res.status(200).json({ message: 'Appointment created', appointment: appointment })
 	} catch (error) {
 		res.status(500).send(error.message)
 	}
@@ -45,7 +63,7 @@ async function updateAppointment(req, res) {
 				id: req.params.appointmentId,
 			},
 		})
-        if (appointmentExist !== 0) {
+		if (appointmentExist !== 0) {
 			return res.status(200).json({ message: 'Appointment updated', appointment: appointment })
 		} else {
 			return res.status(404).send('Appointment not found')
