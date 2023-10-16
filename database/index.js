@@ -20,8 +20,8 @@ async function checkConnection(){
 
 async function syncModels(value) {
 	const state = {
-		// alter: { alter: true },
-		// force: { force: true },
+		alter: { alter: true },
+		force: { force: true },
 	}
 
 	try {

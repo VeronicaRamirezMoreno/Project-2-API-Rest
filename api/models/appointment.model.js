@@ -31,13 +31,13 @@ const Appointment = sequelize.define(
         },
         description: {
             type: DataTypes.STRING,
-            allowNull: true,
         },
         duration: {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {
                 isDurationValid(value) {
+                    const minDuration = 15; // Minutes
                     const maxDuration = 240; // Minutes
                     const duration = parseInt(value, 10);
                     if (isNaN(duration) || duration < minDuration || duration > maxDuration) {
@@ -48,13 +48,7 @@ const Appointment = sequelize.define(
         },
         status: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isIn: {
-                    args: [['available', 'not_available']],
-                    msg: 'Status not valid. The status field must be available or not available',
-                },
-            },
+            defaultValue: 'available'
         },
     },
     { timestamps: false }

@@ -2,6 +2,8 @@ const Appointment = require('../models/appointment.model')
 const Vet = require('../models/vets.models')
 const Pet = require('../models/pets.models')
 const User = require('../models/user.models')
+const Treatment = require('../models/treatment.model')
+
 
 async function getAllAppointments(req, res) {
 	try {
@@ -90,7 +92,6 @@ async function getVetAppointments(req, res) {
 	}
 }
 
-
 async function getPetAppointments(req, res) {
 
 	try {
@@ -134,39 +135,49 @@ async function getAvailableAppointments(req, res) {
 }
 
 async function bookAppointment(req, res) {
-	
 	try {
+		const { treatmentId } = req.body
+		const treatment = await Treatment.findByPk(treatmentId)
 		const appointment = await Appointment.findByPk(req.params.appointmentId)
+		const updateAppointment = await Appointment.update(
+		{
+			description: treatment.description, 
+			petId: req.body.petId
+		},
+		{
+			where:{
+				id: req.params.appointmentId
+		}})
+		await appointment.addSchedule(treatment)
 		if (appointment) {
-			if (appointment.status === 'available') {
+			if (appointment.status === 'available' && updateAppointment) {
 				appointment.status = 'not_available'
 				await appointment.save()
-				res.status(200).json({ message: 'Appointment booked successfully' })
+				return res.status(200).json({ message: 'Appointment booked successfully'})
 			} else {
-				res.status(409).send('Appointment is not available for booking')
+				return res.status(409).send('Appointment is not available for booking')
 			}
 		} else {
-			res.status(404).send('Appointment not found')
+			return res.status(404).send('Appointment not found')
 		}
 	} catch (error) {
-		res.status(500).send(error.message)
+		return res.status(500).send(error.message)
 	}
 }
 
 
 async function createAppointment(req, res) {
 	try {
-		const { userId, petId } = req.body
-		const vet = await User.findByPk(userId)
-		const pet = await Pet.findByPk(petId)
-
-		if (!vet || !pet) {
-			return res.status(400).json({ error: 'Vet or pet not found' })
-		}
-
-		const appointment = await Appointment.create(req.body)
-		await appointment.setUser(vet)
-		await appointment.setPet(pet)
+		const appointment = await Appointment.create({	
+			
+			appointment_date: req.body.appointment_date,
+			appointment_time : req.body.appointment_time,
+			duration: req.body.duration
+		})
+		const user = await User.findByPk(req.params.vetId)
+		await appointment.setUser(user)
+		
+		
 
 		return res.status(200).json({ message: 'Appointment created', appointment: appointment })
 	} catch (error) {
