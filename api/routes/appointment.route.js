@@ -6,6 +6,7 @@ const {
     getOneAppointment,
     getVetAppointments,
     getPetAppointments,
+    getAvailableAppointments,
     createAppointment,
     updateAppointment,
     deleteAppointment } = require('../controllers/appointment.controller')
@@ -18,6 +19,7 @@ router.put('/:appointmentId',checkPersonnel, updateAppointment)
 router.delete('/:appointmentId',checkPersonnel, deleteAppointment)
 
 router.get ('/owner/appointments', getPetAppointments)
+router.get('/owner/available',getAvailableAppointments)
 
 
 module.exports = router

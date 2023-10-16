@@ -98,6 +98,27 @@ async function getPetAppointments(req, res) {
 	}
 }
 
+async function getAvailableAppointments(req, res) {
+	try {
+	  const availableAppointments = await Appointment.findAll({
+		where: {
+		  status: 'available',
+		},
+		attributes: ['appointment_date', 'appointment_time', 'status'],
+		include: {
+		  model: User,
+		  as: 'user',
+		  attributes: ['first_name'],
+		},
+	  })
+  
+	  res.status(200).json(availableAppointments)
+	} catch (error) {
+	  res.status(500).send(error.message)
+	}
+  }
+  
+
 
 async function createAppointment(req, res) {
 	try {
@@ -159,6 +180,7 @@ module.exports = {
 	getOneAppointment,
 	getVetAppointments,
 	getPetAppointments,
+	getAvailableAppointments,
 	createAppointment,
 	updateAppointment,
 	deleteAppointment
