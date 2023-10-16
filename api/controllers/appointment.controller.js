@@ -48,7 +48,18 @@ async function getOneAppointment(req, res) {
 
 async function createAppointment(req, res) {
 	try {
+		const {userId, petId} = req.body
+		const vet = await User.findByPk(userId)
+		const pet = await Pet.findByPk(petId)
+
+		if (!vet || !pet) {
+			return res.status(400).json({ error: 'Vet or pet not found' });
+		}
+
 		const appointment = await Appointment.create(req.body)
+		await appointment.setUser(vet)
+		await appointment.setPet(pet)
+
 		return res.status(200).json({ message: 'Appointment created', appointment: appointment })
 	} catch (error) {
 		res.status(500).send(error.message)
