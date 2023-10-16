@@ -134,39 +134,46 @@ async function getAvailableAppointments(req, res) {
 }
 
 async function bookAppointment(req, res) {
-	
 	try {
 		const appointment = await Appointment.findByPk(req.params.appointmentId)
+		const pet =await Pet.findByPk(req.params.petId)
+		await appointment.setPet(pet)
 		if (appointment) {
 			if (appointment.status === 'available') {
 				appointment.status = 'not_available'
 				await appointment.save()
-				res.status(200).json({ message: 'Appointment booked successfully' })
+				 return res.status(200).json({ message: 'Appointment booked successfully' })
 			} else {
-				res.status(409).send('Appointment is not available for booking')
+				return res.status(409).send('Appointment is not available for booking')
 			}
 		} else {
-			res.status(404).send('Appointment not found')
+			return res.status(404).send('Appointment not found')
 		}
 	} catch (error) {
-		res.status(500).send(error.message)
+		return res.status(500).send(error.message)
 	}
 }
 
 
 async function createAppointment(req, res) {
 	try {
-		const { userId, petId } = req.body
-		const vet = await User.findByPk(userId)
-		const pet = await Pet.findByPk(petId)
+		// const { userId, petId } = req.body
+		
+		// const pet = await Pet.findByPk(petId)
 
-		if (!vet || !pet) {
-			return res.status(400).json({ error: 'Vet or pet not found' })
-		}
+		// if (!vet || !pet) {
+		// 	return res.status(400).json({ error: 'Vet or pet not found' })
+		// }
 
-		const appointment = await Appointment.create(req.body)
-		await appointment.setUser(vet)
-		await appointment.setPet(pet)
+		const appointment = await Appointment.create({	
+			
+			appointment_date: req.body.appointment_date,
+			appointment_time : req.body.appointment_time,
+			duration: req.body.duration
+		})
+		const user = await User.findOne({id: res.locals.user.userId})
+		await appointment.setUser(user)
+		
 
 		return res.status(200).json({ message: 'Appointment created', appointment: appointment })
 	} catch (error) {

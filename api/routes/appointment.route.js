@@ -13,14 +13,20 @@ const {
     updateAppointment,
     deleteAppointment } = require('../controllers/appointment.controller')
 
-router.get('/', checkPersonnel, getAllAppointments)
-router.get('/:appointmentId', checkPersonnel,getOneAppointment)
-router.get('/vet/:vetId',checkPersonnel, getVetAppointments)
-router.post('/', checkPersonnel,createAppointment)
-router.put('/:appointmentId',checkPersonnel, updateAppointment)
-router.delete('/:appointmentId',checkPersonnel, deleteAppointment)
-router.get ('/owner/appointments', getPetAppointments)
-router.get('/owner/available',getAvailableAppointments)
+    router.get('/', checkPersonnel, getAllAppointments)
+    router.get('/:appointmentId', checkPersonnel,getOneAppointment)
+    router.get('/vet/:vetId',checkPersonnel, getVetAppointments)
+    router.get ('/owner/appointments', getPetAppointments)
+    router.get('/owner/available',getAvailableAppointments)
+
+    router.post('/', checkPersonnel,createAppointment)
+
+    router.put('/:appointmentId',checkPersonnel, updateAppointment)  
+    router.put('/book/:appointmentId/pet/:petId', bookAppointment)
+
+    router.delete('/:appointmentId',checkPersonnel, deleteAppointment)
+   
+  
 
   
   
