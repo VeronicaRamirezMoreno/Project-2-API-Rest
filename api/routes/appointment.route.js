@@ -1,4 +1,5 @@
 const router = require('express').Router()
+
 const { checkAdmin , checkPersonnel} = require("../middlewares/auth");
 
 const {
@@ -20,6 +21,9 @@ router.put('/:appointmentId',checkPersonnel, updateAppointment)
 router.delete('/:appointmentId',checkPersonnel, deleteAppointment)
 router.get ('/owner/appointments', getPetAppointments)
 router.get('/owner/available',getAvailableAppointments)
-router.put('/book/:appointmentId', bookAppointment)
+
+  
+  
+ 
 
 module.exports = router
