@@ -100,24 +100,43 @@ async function getPetAppointments(req, res) {
 
 async function getAvailableAppointments(req, res) {
 	try {
-	  const availableAppointments = await Appointment.findAll({
-		where: {
-		  status: 'available',
-		},
-		attributes: ['appointment_date', 'appointment_time', 'status'],
-		include: {
-		  model: User,
-		  as: 'user',
-		  attributes: ['first_name'],
-		},
-	  })
-  
-	  res.status(200).json(availableAppointments)
+		const availableAppointments = await Appointment.findAll({
+			where: {
+				status: 'available',
+			},
+			attributes: ['appointment_date', 'appointment_time', 'status'],
+			include: {
+				model: User,
+				as: 'user',
+				attributes: ['first_name'],
+			},
+		})
+
+		res.status(200).json(availableAppointments)
 	} catch (error) {
-	  res.status(500).send(error.message)
+		res.status(500).send(error.message)
 	}
-  }
-  
+}
+
+async function bookAppointment(req, res) {
+	
+	try {
+		const appointment = await Appointment.findByPk(req.params.appointmentId)
+		if (appointment) {
+			if (appointment.status === 'available') {
+				appointment.status = 'not_available'
+				await appointment.save()
+				res.status(200).json({ message: 'Appointment booked successfully' })
+			} else {
+				res.status(409).send('Appointment is not available for booking')
+			}
+		} else {
+			res.status(404).send('Appointment not found')
+		}
+	} catch (error) {
+		res.status(500).send(error.message)
+	}
+}
 
 
 async function createAppointment(req, res) {
@@ -183,5 +202,6 @@ module.exports = {
 	getAvailableAppointments,
 	createAppointment,
 	updateAppointment,
+	bookAppointment,
 	deleteAppointment
 }
