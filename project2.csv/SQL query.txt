@@ -1,40 +1,3 @@
--- Insertar los datos en la tabla "appointments"
-INSERT INTO appointments (id, appointment_date, appointment_time, description, duration, status) VALUES
-(1, '2023-10-19', '10:00', 'Revisión anual de Buddy', 30, 'available'),
-(2, '2023-10-21', '14:30', 'Esterilización de Luna', 120, 'available'),
-(3, '2023-10-23', '09:45', 'Desparasitación de Rocky', 15, 'available'),
-(4, '2023-10-25', '11:15', 'Cirugía de emergencia para Coco', 90, 'not_available'),
-(5, '2023-10-27', '13:00', 'Radiografía para Mia', 45, 'available'),
-(6, '2023-10-29', '15:30', 'Tratamiento dental para Simba', 60, 'available'),
-(7, '2023-10-31', '17:45', 'Quimioterapia para Bella', 75, 'available'),
-(8, '2023-11-02', '10:30', 'Fisioterapia para Max', 30, 'not_available'),
-(9, '2023-11-04', '12:00', 'Análisis de sangre para Milo', 60, 'available'),
-(10, '2023-11-06', '16:15', 'Ecografía para Lola', 45, 'available'),
-(11, '2023-10-19', '12:30', 'Control de peso para Max', 30, 'available'),
-(12, '2023-10-19', '15:30', 'Examen de salud para Bella', 60, 'available'),
-(13, '2023-10-19', '17:30', 'Vacunación de cachorros', 45, 'available'),
-(14, '2023-10-19', '10:30', 'Tratamiento para Lola', 30, 'available'),
-(15, '2023-10-19', '14:00', 'Cirugía de esterilización para Simba', 120, 'available');
-
--- Insertar datos en la tabla "pets"
-INSERT INTO pets (id, name, birth_date, chip_num, species, breed, sex, profile_picture, comments) VALUES
-(1, 'Buddy', '2018-04-03', 123456789, 'Perro', 'Golden Retriever', 'Macho', 'url_imagen_buddy.jpg', 'Sin problemas de salud conocidos'),
-(2, 'Luna', '2020-01-15', 234567890, 'Perro', 'Labrador Retriever', 'Hembra', 'url_imagen_luna.jpg', 'Vacunada y desparasitada'),
-(3, 'Rocky', '2019-09-22', 345678901, 'Perro', 'Bulldog Francés', 'Macho', 'url_imagen_rocky.jpg', 'Control de pulgas necesario'),
-(4, 'Coco', '2017-07-11', 456789012, 'Perro', 'Poodle', 'Macho', 'url_imagen_coco.jpg', 'Sin problemas de salud conocidos'),
-(5, 'Mia', '2018-10-30', 567890123, 'Gato', 'Siamés', 'Hembra', 'url_imagen_mia.jpg', 'Esterilizada'),
-(6, 'Simba', '2020-03-19', 678901234, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_simba.jpg', 'Necesita atención dental'),
-(7, 'Bella', '2019-12-05', 789012345, 'Perro', 'Rottweiler', 'Hembra', 'url_imagen_bella.jpg', 'Sin problemas de salud conocidos'),
-(8, 'Max', '2018-08-28', 890123456, 'Perro', 'German Shepherd', 'Macho', 'url_imagen_max.jpg', 'Vacunado y desparasitado'),
-(9, 'Milo', '2021-04-17', 901234567, 'Perro', 'Yorkshire Terrier', 'Macho', 'url_imagen_milo.jpg', 'Control de pulgas necesario'),
-(10, 'Lola', '2019-11-09', 123456780, 'Perro', 'Beagle', 'Hembra', 'url_imagen_lola.jpg', 'Esterilizada'),
-(11, 'Gato 1', '2019-05-15', 123456789, 'Gato', 'Doméstico', 'Macho', 'url_imagen_gato_1.jpg', 'Sin problemas de salud conocidos'),
-(12, 'Gato 2', '2020-08-20', 987654321, 'Gato', 'Siamés', 'Hembra', 'url_imagen_gato_2.jpg', 'Vacunado y desparasitado'),
-(13, 'Gato 3', '2018-03-10', 234567890, 'Gato', 'Persa', 'Macho', 'url_imagen_gato_3.jpg', 'Diabetes controlada con medicación'),
-(14, 'Gato 4', '2019-11-27', 876543210, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_gato_4.jpg', 'Energético y juguetón'),
-(15, 'Gato 5', '2021-02-08', 345678901, 'Gato', 'Bengalí', 'Hembra', 'url_imagen_gato_5.jpg', 'Requiere alimentación especial'),
-(16, 'Gato 6', '2020-06-14', 765432109, 'Gato', 'Sphynx', 'Hembra', 'url_imagen_gato_6.jpg', 'Sin problemas de salud conocidos');
-
 -- Insertar datos en la tabla "treatments"
 INSERT INTO treatments (id, name, description, price) VALUES
 (1, 'Vacunación', 'Vacunación anual para perros y gatos.', 50.00),
@@ -51,7 +14,7 @@ INSERT INTO treatments (id, name, description, price) VALUES
 -- Insertar datos en la tabla "users" 
 INSERT INTO users (id, first_name, last_name, dni, email, password, role) VALUES
 (1, 'Juan', 'García', '12345678A', 'juan@gmail.com', '$2b$10$c98ItA.96Ee.8ypSX5KFnOX7hH0BDIEzTGqUtqZhsXvDdwVQzeUcC', 'admin'),
-(2, 'Ana', 'Martínez', '98765432B', 'ana@gmail.com', 'P9joEHK9pI9wwjVVJJSQg1zIW', 'personnel'),
+(2, 'Ana', 'Martínez', '98765432B', 'ana@gmail.com', '$2b$10$phzLuUpc1zANIm823k463um2rNHcdSbVn2NAaE6ruuB5E..BKBJJe', 'personnel'),
 (3, 'Carlos', 'López', '87654321C', 'carlos@gmail.com', '$2b$10$0Xs9AyXHJ24liobsGTspoOdEE5dw.ADTNAmxMa.epSz0Tv15sHg7y', 'user'),
 (4, 'María', 'Rodríguez', '76543210D', 'maria@gmail.com', '$2b$10$XW/OwjXqek/l3wCZd19P/OT6BI2XuddOvhX8eRTNpv.w.CMlDuH/e', 'user'),
 (5, 'Luis', 'Gómez', '65432109E', 'luis@gmail.com', '$2b$10$KB.pRf3F2dwZC9kpABp4YOJrzwTXBPDk7QHYn5oy3nXXPHb5PtjsS', 'personnel'),
@@ -85,3 +48,40 @@ INSERT INTO vets (membership_num, specialization, phone, profile_picture, userId
 ('VET101', 'Cardiología', '+4567890123', 'https://gmail.com/vet4.jpg',11),
 ('VET202', 'Ortopedia', '+5678901234', 'https://gmail.com/vet5.jpg',13),
 ('VET303', 'Neurología', '+6789012345', 'https://gmail.com/vet6.jpg',15);
+
+-- Insertar datos en la tabla "pets"
+INSERT INTO pets (id, name, birth_date, chip_num, species, breed, sex, profile_picture, comments, userId) VALUES
+(1, 'Buddy', '2018-04-03', 123456789, 'Perro', 'Golden Retriever', 'Macho', 'url_imagen_buddy.jpg', 'Sin problemas de salud conocidos',3),
+(2, 'Luna', '2020-01-15', 234567890, 'Perro', 'Labrador Retriever', 'Hembra', 'url_imagen_luna.jpg', 'Vacunada y desparasitada',4),
+(3, 'Rocky', '2019-09-22', 345678901, 'Perro', 'Bulldog Francés', 'Macho', 'url_imagen_rocky.jpg', 'Control de pulgas necesario',6),
+(4, 'Coco', '2017-07-11', 456789012, 'Perro', 'Poodle', 'Macho', 'url_imagen_coco.jpg', 'Sin problemas de salud conocidos',7),
+(5, 'Mia', '2018-10-30', 567890123, 'Gato', 'Siamés', 'Hembra', 'url_imagen_mia.jpg', 'Esterilizada',9),
+(6, 'Simba', '2020-03-19', 678901234, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_simba.jpg', 'Necesita atención dental',12),
+(7, 'Bella', '2019-12-05', 789012345, 'Perro', 'Rottweiler', 'Hembra', 'url_imagen_bella.jpg', 'Sin problemas de salud conocidos',14),
+(8, 'Max', '2018-08-28', 890123456, 'Perro', 'German Shepherd', 'Macho', 'url_imagen_max.jpg', 'Vacunado y desparasitado',9),
+(9, 'Milo', '2021-04-17', 901234567, 'Perro', 'Yorkshire Terrier', 'Macho', 'url_imagen_milo.jpg', 'Control de pulgas necesario',3),
+(10, 'Lola', '2019-11-09', 123456780, 'Perro', 'Beagle', 'Hembra', 'url_imagen_lola.jpg', 'Esterilizada',4),
+(11, 'Gato 1', '2019-05-15', 123456789, 'Gato', 'Doméstico', 'Macho', 'url_imagen_gato_1.jpg', 'Sin problemas de salud conocidos',10),
+(12, 'Gato 2', '2020-08-20', 987654321, 'Gato', 'Siamés', 'Hembra', 'url_imagen_gato_2.jpg', 'Vacunado y desparasitado',10),
+(13, 'Gato 3', '2018-03-10', 234567890, 'Gato', 'Persa', 'Macho', 'url_imagen_gato_3.jpg', 'Diabetes controlada con medicación',10),
+(14, 'Gato 4', '2019-11-27', 876543210, 'Gato', 'Maine Coon', 'Macho', 'url_imagen_gato_4.jpg', 'Energético y juguetón',10),
+(15, 'Gato 5', '2021-02-08', 345678901, 'Gato', 'Bengalí', 'Hembra', 'url_imagen_gato_5.jpg', 'Requiere alimentación especial',10),
+(16, 'Gato 6', '2020-06-14', 765432109, 'Gato', 'Sphynx', 'Hembra', 'url_imagen_gato_6.jpg', 'Sin problemas de salud conocidos',10);
+
+-- Insertar los datos en la tabla "appointments"
+INSERT INTO appointments (id, appointment_date, appointment_time, description, duration, status, userId, petId) VALUES
+(1, '2023-10-19', '10:00', 'Revisión anual de Buddy', 30, 'available',5,1),
+(2, '2023-10-21', '14:30', 'Esterilización de Luna', 120, 'available',5,2),
+(3, '2023-10-23', '09:45', 'Desparasitación de Rocky', 15, 'available',15,3),
+(4, '2023-10-25', '11:15', 'Cirugía de emergencia para Coco', 90, 'not_available',13,4),
+(5, '2023-10-27', '13:00', 'Radiografía para Mia', 45, 'available',13,5),
+(6, '2023-10-29', '15:30', 'Tratamiento dental para Simba', 60, 'available',8,6),
+(7, '2023-10-31', '17:45', 'Quimioterapia para Bella', 75, 'available',8,7),
+(8, '2023-11-02', '10:30', 'Fisioterapia para Max', 30, 'not_available',8,8),
+(9, '2023-11-04', '12:00', 'Análisis de sangre para Milo', 60, 'available',13,9),
+(10, '2023-11-06', '16:15', 'Ecografía para Lola', 45, 'available',13,10),
+(11, '2023-10-19', '12:30', 'Control de peso para Max', 30, 'available',5,11),
+(12, '2023-10-19', '15:30', 'Examen de salud para Bella', 60, 'available',5,12),
+(13, '2023-10-19', '17:30', 'Vacunación de cachorros', 45, 'available',5,13),
+(14, '2023-10-19', '10:30', 'Tratamiento para Lola', 30, 'available',5,14),
+(15, '2023-10-19', '14:00', 'Cirugía de esterilización para Simba', 120, 'available',15,15);
