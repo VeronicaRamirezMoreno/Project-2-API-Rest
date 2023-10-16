@@ -78,7 +78,6 @@ async function getVetAppointments(req, res) {
 async function getPetAppointments(req, res) {
 
 	try {
-
 		const user = await User.findOne({
 			where: {
 				id: res.locals.user.id
