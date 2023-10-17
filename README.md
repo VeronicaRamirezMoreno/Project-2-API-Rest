@@ -16,7 +16,7 @@ Roles: There will be 3 main roles:
 - User (pet owner): This role can view all vet and treatment information. But you can only see your own appointments, pets and contact information (not other users). Likewise, you can only create, update and delete your own data. You have access to the information of all available appointments and the possibility to update the "status" field of the appointments when you select one to book for your pet, so that its status changes to "not available".
 
 ### Tables:
-![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/f0c5efa7-10fc-47e9-8a0a-b48a48315d16)
+![image](https://github.com/VeronicaRamirezMoreno/Project-2-API-Rest/assets/122170615/90340a1a-4d1a-4309-84b2-433e8c73ae00)
 
 
 ### Relationships between tables:
@@ -56,7 +56,6 @@ GET    | /user          | YES   | admin | Get All Users       |  `query params` 
 GET    | /user/:userId    | YES   | admin | Get One User       |                                 | {user}
 GET    | /user/owner    | YES   | personnel | Get All Owners       |  `query params`                                 | [{user}]
 GET    | /user/profile    | YES   | user | Get Own Profile          |                                                 |  {user}
-POST   | /user/owner     | YES   | personnel |  Create one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
 POST   | /user     | YES   | admin |  Create one User     | `first_name`, `last_name`, `email`, `password`, `DNI` ,`role` | {user}
 PUT    | /user/profile   | YES   | user |  Update own user     | `first_name`, `last_name`, `email`, `password`, `DNI`  | {message: 'User updated'}
 PUT    | /user/:ownerId    | YES   | personnel |  Update one Owner     | `first_name`, `last_name`, `email`, `password`, `DNI` | {message: 'User updated'}
@@ -72,9 +71,7 @@ METHOD | ENDPOINT         | TOKEN | ROLE | DESCRIPTION              | POST PARAM
 GET    | /contact_info    | YES   | personnel | Get All Contact_info       |  `query params`                                 | [{contact_info}]
 GET    | /contact_info/:contact_infoID    | YES   | personnel | Get One Contact_info |                        | {contact_info}
 GET    | /contact_info/profile    | YES   | user | Get Own Profile          |                                                 |  {contact_info}
-POST   | /contact_info/profile (*)Note | YES   | user |  Create Own Contact_indo  | `phone`, `address`              |{contact_info}
 POST   | /contact_info             | YES   | personnel | Create one Contact_info    | `phone`, `address`       | {contact_info}
-PUT    | /contact_info /profile   | YES   | user |  Update own contact_info      | `phone`, `address`   | {message: 'Contact information updated'}
 PUT    | /contact_info /:contact_infoId    | YES   | personnel |  Update one contact_info      | `phone`, `address`    | {message: 'Contact information updated'}
 DELETE | /contact_info /profile    | YES   | user | Delete own contact_info       |                                               | { message: 'Contact information deleted' }
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
