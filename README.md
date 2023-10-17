@@ -76,6 +76,7 @@ PUT    | /contact_info /:contact_infoId    | YES   | personnel |  Update one con
 DELETE | /contact_info /profile    | YES   | user | Delete own contact_info       |                                               | { message: 'Contact information deleted' }
 DELETE | /contact_info /:contact_infoId      | YES   | personnel | Delete one contact_info     |                                  | {message: 'Contact information deleted'}
 
+(*) Note: We will not use POST for the user to create contact_info because it will be created directly from the Signup.
 
 ### Vets_info Endpoints
 
