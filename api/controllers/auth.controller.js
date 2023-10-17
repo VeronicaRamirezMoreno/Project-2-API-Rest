@@ -9,10 +9,10 @@ require('dotenv').config()
 
 const signUp = async (req, res) => {
     try {
-        if(req.body.password.length < 8 ){
-            return res.status(400).json({ message: 'Password too short'})
+        if (req.body.password.length < 8) {
+            return res.status(400).json({ message: 'Password too short' })
         }
-        const payload = {email: req.body.email}
+        const payload = { email: req.body.email }
         const salt = bcrypt.genSaltSync(parseInt(10))
         const encrypted = bcrypt.hashSync(req.body.password, salt)
         req.body.password = encrypted
@@ -21,35 +21,40 @@ const signUp = async (req, res) => {
 
         const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
 
-        if(user.role === "personnel"){
-			const vetInfo = await Vet.create(req.body)
-			await vetInfo.setUser(user)
+        if (user.role === "personnel") {
+            const vetInfo = await Vet.create(req.body)
+            await vetInfo.setUser(user)
 
-        	return res.status(200).json({
-							message: 'Vet created',
-							user: user,
-							token: token
-        	})
+            return res.status(200).json({
+                message: 'Vet created',
+                name: user.first_name,
+                email: user.email,
+                role: user.role,
+                token: token
+            })
 
-		}else if (user.role === "user"){		
-			const contactInfo = await ContactInfo.create(req.body)
-			await contactInfo.setUser(user)
+        } else if (user.role === "user") {
+            const contactInfo = await ContactInfo.create(req.body)
+            await contactInfo.setUser(user)
 
-        	return res.status(200).json({
-							message: 'User created',
-							user: user,
-							vetInfo: contactInfo,
-							token: token
-			})
-		}else
-        return res.status(200).json({
-            message: 'Admin created',
-            name: user.first_name,
-            email: user.email,
-            token: token
-        })
+            return res.status(200).json({
+                message: 'User created',
+                name: user.first_name,
+                email: user.email,
+                role: user.role,
+                phone: contactInfo.phone,
+                address: contactInfo.address,
+                token: token
+            })
+        } else
+            return res.status(200).json({
+                message: 'Admin created',
+                name: user.first_name,
+                email: user.email,
+                token: token
+            })
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ message: error.message })
     }
 }
 
@@ -63,21 +68,21 @@ const login = async (req, res) => {
             }
         })
 
-        if(!user) {
-            return res.status(404).json({message: 'Error: Wrong Email or Password'})
+        if (!user) {
+            return res.status(404).json({ message: 'Error: Wrong Email or Password' })
         }
 
         const comparePassword = bcrypt.compareSync(req.body.password, user.password)
-        if(comparePassword) {
+        if (comparePassword) {
             const payload = { email: user.email }
-            const token = jwt.sign(payload, 'secret', { expiresIn: '1h'})
+            const token = jwt.sign(payload, 'secret', { expiresIn: '1h' })
             const role = user.role
             //const coment = `User: ${user.first_name} logged-in `
-            return res.status(200).json( {token, role} )
+            return res.status(200).json({ token, role })
         } else {
             return res
-              .status(404)
-              .json({ message: "Error: Wrong Email or Password" });
+                .status(404)
+                .json({ message: "Error: Wrong Email or Password" });
         }
     } catch (error) {
         return res.status(500).json({ message: error.message });

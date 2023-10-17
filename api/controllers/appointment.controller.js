@@ -3,6 +3,7 @@ const Vet = require('../models/vets.models')
 const Pet = require('../models/pets.models')
 const User = require('../models/user.models')
 const Treatment = require('../models/treatment.model')
+const sequelize = require('sequelize')
 
 
 async function getAllAppointments(req, res) {
@@ -104,15 +105,16 @@ async function getAvailableAppointments(req, res) {
 			where: {
 				status: 'available',
 			},
-			attributes: ['appointment_date', 'appointment_time', 'status'],
+			attributes: ['id', 'appointment_date', 'appointment_time', 'status'],
 			include: {
 				model: User,
 				as: 'user',
-				attributes: ['first_name'],
+				attributes: [[sequelize.col('first_name'), 'Vet']],
 			},
 		})
+		const message = `These are our next available appointments:`
+		return res.status(200).json({ message, availableAppointments })
 
-		res.status(200).json(availableAppointments)
 	} catch (error) {
 		res.status(500).send(error.message)
 	}
@@ -120,24 +122,25 @@ async function getAvailableAppointments(req, res) {
 
 async function bookAppointment(req, res) {
 	try {
-		const { treatmentId } = req.body
-		const treatment = await Treatment.findByPk(treatmentId)
+		const { treatmentIds, petId } = req.body
 		const appointment = await Appointment.findByPk(req.params.appointmentId)
-		const updateAppointment = await Appointment.update(
-		{
-			description: treatment.description, 
-			petId: req.body.petId
-		},
-		{
-			where:{
-				id: req.params.appointmentId
-		}})
-		await appointment.addSchedule(treatment)
+
 		if (appointment) {
-			if (appointment.status === 'available' && updateAppointment) {
-				appointment.status = 'not_available'
-				await appointment.save()
-				return res.status(200).json({ message: 'Appointment booked successfully'})
+			if (appointment.status === 'available') {
+
+				await appointment.addSchedule(treatmentIds)
+
+				const treatments = await Treatment.findAll({
+					 where: { id: treatmentIds } })
+				const description = treatments.map(treatment => treatment.description).join(', ')
+
+				await appointment.update({
+					description,
+					petId,
+					status: 'not_available'
+				})
+
+				return res.status(200).json({ message: 'Appointment booked successfully' })
 			} else {
 				return res.status(409).send('Appointment is not available for booking')
 			}
@@ -150,18 +153,19 @@ async function bookAppointment(req, res) {
 }
 
 
+
 async function createAppointment(req, res) {
 	try {
-		const appointment = await Appointment.create({	
-			
+		const appointment = await Appointment.create({
+
 			appointment_date: req.body.appointment_date,
-			appointment_time : req.body.appointment_time,
+			appointment_time: req.body.appointment_time,
 			duration: req.body.duration
 		})
 		const user = await User.findByPk(req.params.vetId)
 		await appointment.setUser(user)
-		
-		
+
+
 
 		return res.status(200).json({ message: 'Appointment created', appointment: appointment })
 	} catch (error) {

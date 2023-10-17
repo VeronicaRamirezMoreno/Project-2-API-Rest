@@ -29,8 +29,8 @@ async function getAllOwners(req, res) {
 			where: {
 				role: 'user'
 			},
-			include: {model:Pet},
-			
+			include: { model: Pet },
+
 			attributes: {
 				exclude: ['password']
 			}
@@ -50,12 +50,15 @@ async function getOwnProfile(req, res) {
 		const user = await User.findOne({
 			where: {
 				id: res.locals.user.id
-			}, 
-			include: {model:Pet}
+			},
+			attributes: ['id','first_name', 'last_name','dni','email'],
+			include: { model: Pet }
 		})
 
 		if (user) {
-			return res.status(200).json(user)
+			const message = `Hi ${user.first_name}!, this is your profile and the clinic history of your pets.`
+
+			return res.status(200).json({ message, user })
 		} else {
 			return res.status(404).send('User not found')
 		}
@@ -200,22 +203,22 @@ async function deleteUser(req, res) {
 }
 
 async function deleteOwner(req, res) {
-    try {
-        const user = await User.destroy({
-            where: {
-                id: req.params.userId,
-                role: 'user' 
-            },
-        })
+	try {
+		const user = await User.destroy({
+			where: {
+				id: req.params.userId,
+				role: 'user'
+			},
+		})
 
-        if (user) {
-            return res.status(200).send('User deleted')
-        } else {
-            return res.status(404).send('User not found or not authorized to delete this user')
-        }
-    } catch (error) {
-        return res.status(500).send(error.message)
-    }
+		if (user) {
+			return res.status(200).send('User deleted')
+		} else {
+			return res.status(404).send('User not found or not authorized to delete this user')
+		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
 }
 
 
