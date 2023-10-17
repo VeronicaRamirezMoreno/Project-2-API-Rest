@@ -51,13 +51,16 @@ async function getOneContactInfo(req, res) {
 
 async function createContactInfo(req, res) {
 	try {
-		const contact_info = await ContactInfo.create(req.body, {
-			where: {
-				id: res.locals.user.id
-			}
+		const contact_info = await ContactInfo.create({	
+			phone: req.body.phone,
+			address : req.body.address
 		})
+		const user = await User.findByPk(req.params.userId)
+		await contact_info.setUser(user)
+
 		return res.status(200).json({ message: 'Contact created', contact_info })
-	} catch (error) {
+	}
+		catch (error) {
 		res.status(500).send(error.message)
 	}
 }
@@ -76,6 +79,19 @@ async function updateContactInfo(req, res) {
 		} else {
 			return res.status(404).send('Contact not found')
 		}
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+async function updateContactInfoProfile(req, res) {
+	try {
+		const contact_info = await ContactInfo.update(req.body, {
+			where: {
+				userId: res.locals.user.id
+			},
+		})
+		return res.status(200).json({ message: 'Profile updated', contact_info })
+		
 	} catch (error) {
 		return res.status(500).send(error.message)
 	}
@@ -105,5 +121,6 @@ module.exports = {
 	getOneContactInfo,
 	createContactInfo,
 	updateContactInfo,
+	updateContactInfoProfile,
 	deleteContactInfo,	
 }
