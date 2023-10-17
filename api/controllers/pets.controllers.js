@@ -29,12 +29,35 @@ async function getOnePet(req, res) {
 	}
 }
 
+async function getOwnerPet(req, res) {
 
-async function createPet(req, res) {
+	try {
+		const user = await User.findOne({
+			where: {
+				id: res.locals.user.id
+			},
+			include: { model: Pet }
+		})
+		if (!user) {
+			return res.status(404).send('User not found')
+		}
+
+		const message = `${user.first_name}, these are the upcoming appointments for your pets.`
+		const petAppointments = user.pets
+		res.status(200).json({ message, petAppointments })
+
+	} catch (error) {
+		return res.status(500).send(error.message)
+	}
+}
+
+async function createPetProfile(req, res) {
 	try {
 		const pet = await Pet.create(req.body)
-		const userId = req.params.userId
-		const user = await User.findByPk(userId)
+		const user = await User.findOne({
+			where: {
+				id: res.locals.user.id
+			}})
 
 		if(!user){
 			return res.status(404).send('User not found')
@@ -46,7 +69,21 @@ async function createPet(req, res) {
 		res.status(500).send(error.message)
 	}
 }
+async function createPetPersonnel(req, res) {
+	try {
+		const pet = await Pet.create(req.body)
+		const user = await User.findByPk(req.params.userId)
 
+		if(!user){
+			return res.status(404).send('User not found')
+		}
+		await user.addPet(pet)
+
+		return res.status(200).json({ message: `${pet.name} created and added to ${user.first_name}`, pet })
+	} catch (error) {
+		res.status(500).send(error.message)
+	}
+}
 async function updatePet(req, res) {
 	try {
 		const [petExist, pet] = await Pet.update(req.body, {
@@ -109,7 +146,9 @@ async function deletePet(req, res) {
 module.exports = {
 	getAllPets,
 	getOnePet,
-	createPet,
+	getOwnerPet,
+	createPetProfile,
+	createPetPersonnel,
 	updatePet,
 	addPetToUser,
 	deletePet
